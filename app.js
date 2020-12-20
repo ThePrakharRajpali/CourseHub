@@ -1,7 +1,7 @@
-var bodyParser = require("body-parser");
-var mongoose   = require("mongoose");
-var express    = require("express");
-
+var bodyParser     = require("body-parser");
+var mongoose       = require("mongoose");
+var express        = require("express");
+var methodOverride = require("method-override");
 var app =  express();
 
 var Semester = require('./models/semester');
@@ -29,15 +29,21 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 
 ////////////////////////////////////////////////////////////////////////////////
-
+//INDEX
 app.get("/", (req, res) => {
-    res.render("home");
+    Semester.find({}, (err, semesters) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("home", {semesters: semesters});
+        }
+    });
 });
-
+//NEW
 app.get("/new", (req, res) => {
     res.render("newSemester");
 });
-
+//CREATE
 app.post("/", (req, res) => {
     var name = req.body.name;
     var semNum = req.body.semNum;
@@ -51,23 +57,54 @@ app.post("/", (req, res) => {
         }
     })
 });
-
+//SHOW
 app.get("/:semester", (req, res) => {
-    Semester.find({name: req.body.name}, (err, foundSemester) => {
+    Semester.find({name: req.params.semester}, (err, foundSemester) => {
         if(err) {
             console.log(err);
         } else {
             console.log(foundSemester);
-            res.render("year", {semester:foundSemester});
+            res.render("year", {sem:foundSemester});
         }
     })
 });
+//EDIT
+app.get("/:semester/edit",(req, res) => {
+    Semester.find({name: req.params.semester}, (err, foundSemester) => {
+        if(err){
+            console.log(err);
+        } else {
+            console.log(foundSemester);
+            res.render("editSemester", {sem : foundSemester});
+        }
+    });
+});
+//UPDATE
+app.put("/:semester", (req, res) => {
+    Semester.findOneAndUpdate({name: req.params.semester}, newSemester, (err, updatedSemester) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(updatedSemester);
+            res.redirect("/"+req.params.semester);
+        }
+    });
+});
+//DESTROY
+app.get("/:semester/delete", (req, res) => {
+    Semester.findOneAndDelete({name: req.params.semester}, (err, deletedSemester) => {
+        if(err){
+            console.log(err);
+        }else{
+            console.log(deletedSemester);
+            res.redirect("/");
+        }
+    });
+});
 
-// app.get("/:semester/")
+////////////////////////////////////////////////////////////////////////////////
 
-// app.get("/:semester/new", (req, res) => {
-//
-// });
+
 
 
 app.get("/:semester/:branch", (req, res) => {

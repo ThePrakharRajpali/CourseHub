@@ -1,6 +1,6 @@
 # CourseHub
 
 #### HOW TO RUN:
-npm install 
-mongod
-node app.js
+1. npm install 
+2. mongod
+3. node app.js

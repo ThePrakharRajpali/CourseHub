@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 var semesterSchema = new mongoose.Schema({
     name: String,
-    num: String,
+    num: Number,
     subjects: [
         {
             type: mongoose.Schema.Types.ObjectId,

@@ -34,11 +34,41 @@ app.get("/", (req, res) => {
     res.render("home");
 });
 
-app.get("/:semester", (req, res) => {
-    var semester = req.params.semester;
-    console.log(semester);
-    res.render("year", {semester: semester});
+app.get("/new", (req, res) => {
+    res.render("newSemester");
 });
+
+app.post("/", (req, res) => {
+    var name = req.body.name;
+    var semNum = req.body.semNum;
+    var newSemester = {name: name, semNum: semNum};
+    Semester.create(newSemester, (err, newlyCreated) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(newlyCreated);
+            res.redirect("/");
+        }
+    })
+});
+
+app.get("/:semester", (req, res) => {
+    Semester.find({name: req.body.name}, (err, foundSemester) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(foundSemester);
+            res.render("year", {semester:foundSemester});
+        }
+    })
+});
+
+// app.get("/:semester/")
+
+// app.get("/:semester/new", (req, res) => {
+//
+// });
+
 
 app.get("/:semester/:branch", (req, res) => {
     var branch = req.params.branch;
@@ -61,6 +91,9 @@ app.get("/:semester/:branch/:subject", (req, res) => {
         subject: subject
     });
 });
+
+
+
 
 app.listen(3000, process.env.IP, () => {
     console.log("Server started at Port:3000");

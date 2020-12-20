@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 
 var subjectSchema = new mongoose.Schema({
-    name: String,
+    subjectCode: String, //code eg. CS221
+    name: String, //official name eg. Digital design
+
     // resources: [
     //     {
     //

@@ -5,9 +5,7 @@ var methodOverride = require("method-override");
 
 var app =  express();
 
-// var Semester = require('./models/semester');
 var Subject  = require('./models/subject');
-// var Branch   = require('./models/branch');
 
 var url = "mongodb://localhost:27017/coursehub";
 
@@ -154,13 +152,81 @@ app.get("/:year/:semester", (req, res) => {
     });
 });
 
+// INDEX
 app.get("/:year/:semester/:branch", (req, res) => {
-    res.render("branch", {
-        year: Year[req.params.year],
-        semester: Semester[req.params.semester],
-        branch: Branch[req.params.branch]
+    Subject.find({semester: req.params.semester, branch: req.params.branch}, (err, foundSubjects) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("branch", {
+                year    : Year[req.params.year],
+                semester: Semester[req.params.semester],
+                branch  : Branch[req.params.branch],
+                subjects: foundSubjects,
+            });
+        }
     });
 });
+
+// NEW
+app.get("/:year/:semester/:branch/new", (req, res) => {
+    res.render("new");
+});
+
+// CREATE
+app.post("/:year/:semester/:branch", (req, res) => {
+    // res.redirect("/:year/:semester/:branch")
+    // TODO: create route
+});
+
+// SHOW
+app.get("/:year/:semester/:branch/:subject", (req, res) => {
+    Subject.find({name: req.params.subject}, (err, foundSubject) => {
+        if(err){
+            console.log(err);
+        } else {
+            Resource.find({}, (err, resources) => {
+                if(err){
+                    console.log(err);
+                } else {
+                    res.render("subject", {subject: foundSubject, resources: resources});
+                }
+            })
+        }
+    });
+});
+
+// EDIT
+app.get("/:year/:semester/:branch/:subject/edit", (req, res) => {
+    Subject.find({name: req.params.subject}, (err, foundSubject) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("edit", {subject: foundSubject});
+        }
+    });
+});
+
+// UPDATE
+app.put("/:year/:semester/:branch/:subject", (req, res) => {
+// TODO: Add update code
+});
+
+// DESTROY
+app.delete("/:year/:semester/:branch/:subject/delete", (req, res) => {
+    Subject.findOneAndDelete({name: req.params.subject}, (err, subject) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.redirect("/:year/:semester/:branch");
+        }
+    });
+});
+
+app.get("/:year/:semester/:branch/:subject/new", (req, res) => {
+    Subject.find()
+})
+
 
 
 app.listen(3000, process.env.IP, () => {

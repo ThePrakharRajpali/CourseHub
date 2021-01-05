@@ -1,14 +1,15 @@
 const mongoose = require('mongoose');
 
 var subjectSchema = new mongoose.Schema({
-    subjectCode: String, //code eg. CS221
-    name: String, //official name eg. Digital design
-    branch: String,
-    semester: String,
-    semsterNum: Number,
-    resources: [
+    name        : String, //official name eg. Digital design
+    branch      : String,
+    semester    : String,
+    semsterNum  : Number,
+    subjectCode : String, //code eg. CS221
+    resources   : [
         {
-            type: String,
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Resource"
         }
     ],
 });

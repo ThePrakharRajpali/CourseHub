@@ -5,9 +5,7 @@ var methodOverride = require("method-override");
 
 var app =  express();
 
-// var Semester = require('./models/semester');
 var Subject  = require('./models/subject');
-// var Branch   = require('./models/branch');
 
 var url = "mongodb://localhost:27017/coursehub";
 

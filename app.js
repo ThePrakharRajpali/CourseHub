@@ -138,7 +138,7 @@ var Branch = {
 // HOME SCREEN
 ////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("home",{Year:Year});
 });
 
 app.get("/:year", (req,res) => {

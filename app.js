@@ -66,27 +66,27 @@ var Year = {
 }
 
 var Semester = {
-    "first" : {
+    first : {
         name: "first",
         num: 1,
     },
-    "second" : {
+    second : {
         name: "second",
         num: 2,
     },
-    "third" : {
+    third : {
         name: "third",
         num: 3,
     },
-    "fourth" : {
+    fourth : {
         name: "fourth",
         num: 4,
     },
-    "fifth" : {
+    fifth : {
         name: "fifth",
         num: 5,
     },
-    "sixth" : {
+    sixth : {
         name: "sixth",
         num: 6,
     },
@@ -94,42 +94,56 @@ var Semester = {
         name: "seventh",
         num: 7,
     },
-    "eighth" : {
+    eighth : {
         name: "eighth",
         num: 8,
     },
 }
 
 var Branch = {
-    "CSE" : {
+    freshmen: {
+        name: "freshmen",
+        code: 0,
+    },
+    CSE : {
         name: "CSE",
+        code: 1,
     },
-    "MNC" : {
+    MNC : {
         name: "MNC",
+        code: 23,
     },
-    "ECE" : {
+    ECE : {
         name: "ECE",
+        code: 2,
     },
-    "EEE" : {
+    EEE : {
         name: "EEE",
+        code: 3,
     },
-    "Mech" : {
+    Mech : {
         name: "Mech",
+        code: 4,
     },
-    "Chem" : {
+    Chem : {
         name: "Chem",
+        code: null,
     },
-    "Civil" : {
+    Civil : {
         name: "Civil",
+        code: null,
     },
-    "CST" : {
+    CST : {
         name: "CST",
+        code: null,
     },
-    "EPH" : {
+    EPH : {
         name: "EPH",
+        code: null,
     },
-    "BSBE" : {
+    BSBE : {
         name: "BSBE",
+        code: null,
     },
 }
 

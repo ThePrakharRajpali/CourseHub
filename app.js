@@ -6,6 +6,7 @@ var methodOverride = require("method-override");
 var app =  express();
 
 var Subject  = require('./models/subject');
+var Resource = require('./models/resource')
 
 var url = "mongodb://localhost:27017/coursehub";
 
@@ -31,6 +32,7 @@ var Year = {
     firstYear: {
         number: 1,
         name: "Freshman Year",
+        linkName: "firstYear",
         semesters: [
             "first",
             "second"
@@ -40,6 +42,7 @@ var Year = {
     secondYear: {
         number: 2,
         name: "Sophomore Year",
+        linkName: "secondYear",
         semesters: [
             "third",
             "fourth"
@@ -49,6 +52,7 @@ var Year = {
     thirdYear: {
         number: 3,
         name: "Pre-final Year",
+        linkName: "thirdYear",
         semesters: [
             "fifth",
             "sixth"
@@ -58,6 +62,7 @@ var Year = {
     fourthYear: {
         number: 4,
         name: "Final Year",
+        linkName: "fourthYear",
         semesters: [
             "seventh",
             "eighth"
@@ -90,7 +95,7 @@ var Semester = {
         name: "sixth",
         num: 6,
     },
-    "seventh" : {
+    seventh : {
         name: "seventh",
         num: 7,
     },
@@ -162,10 +167,22 @@ app.get("/404", (req, res) => {
     res.send("<h1>404 not found</h1>")
 });
 
+app.get("/showSubjects", (req, res) => {
+    Subject.find({}, (err, eubjects) => {
+        res.render('allSubject',{Subjects:subjects});
+    });
+});
 app.get("/:year", (req,res) => {
     if( yearKeys.includes(req.params.year) ){
         if(Year[req.params.year]){
-            res.render("year", {year: Year[req.params.year]});
+            res.render("year", {
+                Year         : Year[req.params.year],
+                yearKeys     : yearKeys,
+                Semester     : Semester,
+                semesterKeys : semesterKeys,
+                Branch       : Branch,
+                branchKeys   : branchKeys
+            });
         }
     } else {
         res.redirect("/404");
@@ -176,8 +193,12 @@ app.get("/:year", (req,res) => {
 app.get("/:year/:semester", (req, res) => {
     if(yearKeys.includes(req.params.year) && semesterKeys.includes(req.params.semester)){
         res.render("semester", {
-            year: Year[req.params.year],
-            semester: Semester[req.params.semester]
+            Year         : Year[req.params.year],
+            yearKeys     : yearKeys,
+            Semester     : Semester[req.params.semester],
+            semesterKeys : semesterKeys,
+            Branch       : Branch,
+            branchKeys   : branchKeys
         });
     } else {
         res.redirect("/404");
@@ -189,17 +210,17 @@ app.get("/:year/:semester", (req, res) => {
 app.get("/:year/:semester/:branch", (req, res) => {
     if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
+    branchKeys.includes(req.params.branch)) {
         Subject.find({semester: req.params.semester, branch: req.params.branch}, (err, foundSubjects) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
             } else {
                 res.render("branch", {
-                    year    : Year[req.params.year],
-                    semester: Semester[req.params.semester],
-                    branch  : Branch[req.params.branch],
-                    subjects: foundSubjects,
+                    Year    : Year[req.params.year],
+                    Semester: Semester[req.params.semester],
+                    Branch  : Branch[req.params.branch],
+                    Subjects: foundSubjects,
                 });
             }
         });
@@ -212,10 +233,14 @@ app.get("/:year/:semester/:branch", (req, res) => {
 // NEW
 app.get("/:year/:semester/:branch/new", (req, res) => {
 
-    if ((yearKeys.includes(req.params.year) &&
-    semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        res.render("newSubject");
+    if (yearKeys.includes(req.params.year) &&
+        semesterKeys.includes(req.params.semester) &&
+        branchKeys.includes(req.params.branch)) {
+        res.render("newSubject", {
+            Year    : Year[req.params.year],
+            Semester: Semester[req.params.semester],
+            Branch  : Branch[req.params.branch],
+        });
 
     } else {
         res.redirect("/404");
@@ -224,11 +249,32 @@ app.get("/:year/:semester/:branch/new", (req, res) => {
 
 // CREATE
 app.post("/:year/:semester/:branch", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        // res.redirect("/:year/:semester/:branch")
-        // TODO: create route
+    branchKeys.includes(req.params.branch)) {
+        var name = req.body.name;
+        var year = req.body.year;
+        var branch = req.body.branch;
+        var semester = req.body.semester;
+        var semesterNumber = req.body.semesterNo;
+        var subjectCode = req.body.subjectCode;
+
+        var newSubject = {
+            name:name,
+            year:year,
+            branch: branch,
+            semester: semester,
+            semesterNumber:semesterNumber,
+            subjectCode: subjectCode
+        };
+
+        Subject.create(newSubject, (err, newlyCreated) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect("/"+ req.params.year + "/" + req.params.semester + "/" + req.params.branch);
+            }
+        });
     } else {
         res.redirect("/404");
     }
@@ -237,10 +283,10 @@ app.post("/:year/:semester/:branch", (req, res) => {
 
 // SHOW
 app.get("/:year/:semester/:branch/:subject", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        Subject.find({name: req.params.subject}, (err, foundSubject) => {
+    branchKeys.includes(req.params.branch)) {
+        Subject.findById(req.params.subjectid, (err, foundSubject) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
@@ -249,7 +295,13 @@ app.get("/:year/:semester/:branch/:subject", (req, res) => {
                     if(err){
                         console.log(err);
                     } else {
-                        res.render("subject", {subject: foundSubject, resources: resources});
+                        res.render("subject", {
+                            Subject: foundSubject,
+                            Resources: resources,
+                            year: req.params.year,
+                            sem: req.params.semester,
+                            branch: req.params.branch
+                        });
                     }
                 })
             }
@@ -261,16 +313,21 @@ app.get("/:year/:semester/:branch/:subject", (req, res) => {
 });
 
 // EDIT
-app.get("/:year/:semester/:branch/:subject/edit", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.get("/:year/:semester/:branch/:subjectid/edit", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        Subject.find({name: req.params.subject}, (err, foundSubject) => {
+    branchKeys.includes(req.params.branch)) {
+        Subject.findById(req.params.subjectid, (err, foundSubject) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
             } else {
-                res.render("editSubject", {subject: foundSubject});
+                res.render("editSubject", {
+                    subject: foundSubject,
+                    year: req.params.year,
+                    semester: req.params.semester,
+                    branch: req.params.branch,
+                });
             }
         });
     } else {
@@ -280,11 +337,17 @@ app.get("/:year/:semester/:branch/:subject/edit", (req, res) => {
 });
 
 // UPDATE
-app.put("/:year/:semester/:branch/:subject", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.put("/:year/:semester/:branch/:subjectid", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-// TODO: Add update code
+    branchKeys.includeS(req.params.branch)) {
+        Subject.findByIdAndUpdate(req.params.subjectid, req.body.editsubject, (err, updatedSubject) => {
+            if(err){
+                console.log(err);
+            } else {
+                res.redirect('/'+updatedSubject.year+'/'+updatedSubject.semester+'/'+updatedSubject.branch+'/'+updatedSubject._id)
+            }
+        });
     } else {
         res.redirect("/404");
     }
@@ -292,11 +355,11 @@ app.put("/:year/:semester/:branch/:subject", (req, res) => {
 });
 
 // DESTROY
-app.delete("/:year/:semester/:branch/:subject/delete", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.delete("/:year/:semester/:branch/:subjectid/delete", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        Subject.findOneAndDelete({name: req.params.subject}, (err, subject) => {
+    branchKeys.includes(req.params.branch)) {
+        Subject.findByIdAndDelete(req.params.subjectid, (err, subject) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
@@ -310,11 +373,11 @@ app.delete("/:year/:semester/:branch/:subject/delete", (req, res) => {
 
 });
 
-app.get("/:year/:semester/:branch/:subject/new", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.get("/:year/:semester/:branch/:subjectid/new", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        Subject.find({name: req.params.subject}, (err, foundSubject) => {
+    branchKeys.includes(req.params.branch)) {
+        Subject.findById(req.params.subjectid, (err, foundSubject) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
@@ -328,16 +391,16 @@ app.get("/:year/:semester/:branch/:subject/new", (req, res) => {
 
 });
 
-app.post("/:year/:semester/:branch/:subject", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.post("/:year/:semester/:branch/:subjectid", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
-        Subject.find({name:req.params.subject}, (err, foundSubject) => {
+    branchKeys.includes(req.params.branch)) {
+        Subject.findById(req.params.subjectid, (err, foundSubject) => {
             if(err){
                 console.log(err);
                 res.redirect("/404");
             } else {
-                //TODO: Create comment
+                //TODO: Create resource
             }
         });
     } else {
@@ -346,10 +409,10 @@ app.post("/:year/:semester/:branch/:subject", (req, res) => {
 
 });
 
-app.get("/:year/:semester/:branch/:subject/:resource/edit", (req, res) => {
-    if ((yearKeys.includes(req.params.year) &&
+app.get("/:year/:semester/:branch/:subjectid/:resourceid/edit", (req, res) => {
+    if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
-    branchKeys.include(req.params.branch)) {
+    branchKeys.includes(req.params.branch)) {
 
     } else {
         res.redirect("/404");

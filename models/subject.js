@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 
 var subjectSchema = new mongoose.Schema({
     name            : String, //official name eg. Digital design
+    year            : String,
     branch          : String,
     semester        : String,
     semsterNumber   : Number,

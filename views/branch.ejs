@@ -1,9 +1,10 @@
 <%- include("partials/header") %>
     <h1>Welcome to Coursehub</h1>
-    <% semesters.forEach((sem) => { %>
-        <div class="year-section">
-            <h3><a href="/<%= sem.name %>"><%= sem.name %></a></h3>
-        </div>
-    <% }); %>
+    <ul>
+        <% Subjects.forEach((subject) => { %>
+            <li> <a href="/<%= Year.linkName %>/<%= Semester.name %>/<%= Branch.name %>/<%= subject._id %>"><%= subject.name %></a> </li>
+        <% }) %>
+    </ul>
+
 
 <%- include("partials/footer") %>

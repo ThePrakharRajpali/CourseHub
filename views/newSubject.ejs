@@ -1,4 +1,25 @@
 <%- include("partials/header") %>
     <h1>Welcome to Coursehub</h1>
 
+    <form class="" action="/<%= Year.linkName %>/<%= Semester.name %>/<%= Branch.name %>" method="post">
+        <label for="name">Subject Name:</label>
+        <input type="text" id="name" name="name" value="">
+
+        <label for="Branch">Branch Name:</label>
+        <input type="text" id="Branch" name="branch" value="">
+
+        <label for="Year">Year:</label>
+        <input type="text" id="Year" name="year" value="">
+
+        <label for="Semester">Semester:</label>
+        <input type="text" id="Semester" name="semester" value="">
+
+        <label for="semesterNo">Semester Number:</label>
+        <input type="number" id="semesterNo" name="semesterNo" value="">
+
+        <label for="subjectCode">Subject Code:</label>
+        <input type="text" id="subjectCode" name="subjectCode" value="">
+
+        <input type="submit" name="" value="submit">
+    </form>
 <%- include("partials/footer") %>

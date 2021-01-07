@@ -1,4 +1,9 @@
 <%- include("partials/header") %>
     <h1>Welcome to Coursehub</h1>
-
+    <h2><%= Subject.name %></h2>
+    <ul>
+        <% Resources.forEach(resource => { %>
+            <li> <%= resource.name %> </li>
+        <% }) %>
+    </ul>
 <%- include("partials/footer") %>

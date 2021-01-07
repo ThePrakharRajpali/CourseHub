@@ -1,10 +1,13 @@
 <%- include("partials/header") %>
     <h1>Welcome to Coursehub</h1>
 
-    <form class="" action="/<%= year %>/<%= semester %>//<%= branch %>/<%= subject.subjectCode %>?_method=PUT" method="post">
+    <form class="" action="/<%= year %>/<%= semester %>/<%= branch %>/<%= subject._id %>?_method=PUT" method="post">
         <label for="name">Name: </label>
         <input type="text" id="name" name="editsubject[name]" value="<%= subject.name %>">
         <br>
+
+        <label for="year">Year</label>
+        <input type="text" id="year" name="editSubject[year]" value="<%= subject.year %>">
 
         <label for="branch">Branch: </label>
         <input type="text" id="branch" name="editsubject[branch]" value="<%= subject.branch %>">
@@ -21,6 +24,6 @@
         <label for="subjectCode">Subject Code:</label>
         <input type="text" id="subjectCode" name="editSubject[subjectCode]" value="<%= subject.subjectCode %>">
 
-        <input type="submit" name="" value="">
+        <input type="submit" name="" value="submit">
     </form>
 <%- include("partials/footer") %>

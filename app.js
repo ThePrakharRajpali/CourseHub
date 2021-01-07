@@ -282,7 +282,7 @@ app.post("/:year/:semester/:branch", (req, res) => {
 });
 
 // SHOW
-app.get("/:year/:semester/:branch/:subject", (req, res) => {
+app.get("/:year/:semester/:branch/:subjectid", (req, res) => {
     if (yearKeys.includes(req.params.year) &&
     semesterKeys.includes(req.params.semester) &&
     branchKeys.includes(req.params.branch)) {

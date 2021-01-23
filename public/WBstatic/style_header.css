@@ -1,0 +1,197 @@
+:root{
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    --txtmain: #595959;
+    --blueprm:#00296B;
+    --bluesec: #5193DE;
+    --bluetri: #1D416B;
+    --yellowacc: #F3BB02;
+    --cardbg :#D0D0D0;
+}
+
+.image{
+    display: block;
+}
+
+body{
+    color: var(--txtmain);
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.universalgrid{
+    display : grid; 
+    grid-template-areas: 
+    "1 A B C D E 2";
+    grid-template-columns:1fr 2fr 2fr 2fr 2fr 2fr 1fr;
+    gap :20px;
+    grid-template-rows: 377px;
+}
+
+.year-of-study{
+    display : grid; 
+    grid-template-areas: 
+    "1 2 3 4";
+    grid-template-columns:3fr 3fr 3fr 3fr;
+    gap :20px;
+    grid-template-rows: 377px;
+}
+
+.navbar{
+    width: 100%;
+    left: 0px;
+    height: 80px;
+    background: white;
+    color : var(--txtmain);
+    position: fixed;
+    top: 0px;
+    width: 100%;
+  }
+
+.navgrid{
+    display : grid; 
+    grid-template-areas: 
+    "LOGO 3 4 5 HOME FAV CON AB IITG";
+    grid-template-columns:3fr 1fr 1fr 1fr 1fr 2fr 2fr 1fr 1fr ;
+    gap :20px;
+    grid-template-rows: 80px;
+}
+
+.ni{
+    display :flex;
+    flex-direction : column;
+    align-items: center;
+    justify-content: center;
+}
+
+.nilogo{
+    display :flex;
+    flex-direction : column;
+    justify-content:center;
+}
+
+.nifav{
+    display :flex;
+    flex-direction : column;
+    align-items: center;
+    justify-content:center;
+    font-style: normal;
+    font-weight: 600;
+    align-items: center;
+    text-decoration-line: underline;
+}
+
+.nicon{
+    display :flex;
+    flex-direction : column;
+    align-items: center;
+    justify-content:center;
+    color : var(--yellowacc);
+}
+
+.hero-grid{
+    display : grid; 
+    grid-template-areas: "1 text photo 2 ";
+    grid-template-columns:1fr 4fr 6fr 1fr ;
+    gap : 20px;
+    grid-template-rows: 700px;
+    width: 100%;
+    left: 0px;
+    background:var(--bluesec);
+    color : var(--blueprm);
+}
+
+.hitxt{
+    display :flex;
+    flex-direction : column;
+    align-items: left;
+    justify-content: center;
+}
+
+.hiph{
+    display :flex;
+    flex-direction : column;
+    align-items: left;
+    justify-content: center;
+    padding-top:20vh;
+}
+
+.dtcard-book{
+    background-image: url("../images/booknohovcard.svg");
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+    flex-direction: column;
+    transition-duration: 300ms;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 377px;
+}
+
+.dtcard-book:hover{
+    background-image: url("../images/bookhovcard.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.dtcard-book p {
+    font-size: 28px;
+    margin-top: 325px;
+}
+
+.dtcard-ln{
+    background-image: url("../images/lnnohovcard.svg");
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+    flex-direction: column;
+    transition-duration: 300ms;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 377px;
+}
+
+.dtcard-ln:hover{
+    background-image: url("../images/lnhovcard.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.dtcard-ln p {
+    font-size: 28px;
+    margin-top: 325px;
+}
+
+.dtcard-ls{
+    background-image: url("../images/lsnohovcard.svg");
+    border-radius: 25px;
+    display: inline-block;
+    position: relative;
+    flex-direction: column;
+    transition-duration: 300ms;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 377px;
+}
+
+.dtcard-ls:hover{
+    background-image: url("../images/lshovcard.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.dtcard-ls p {
+    font-size: 28px;
+    margin-top: 325px;
+}
+
+
+
+

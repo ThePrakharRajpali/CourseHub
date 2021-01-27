@@ -8,6 +8,9 @@
     --yellowacc: #F3BB02;
     --cardbg :#D0D0D0;
 }
+.text-yellow{
+    color : var(--yellowacc);
+}
 
 .image{
     display: block;
@@ -29,14 +32,28 @@ body{
     grid-template-rows: 377px;
 }
 
-.year-of-study{
-    display : grid; 
-    grid-template-areas: 
-    "1 2 3 4";
-    grid-template-columns:3fr 3fr 3fr 3fr;
-    gap :20px;
-    grid-template-rows: 377px;
+.btn1{
+    width: 303px;
+    height: 80px;
+    border-radius: 25px;
+    background: var(--blueprm);
+    color: var(--yellowacc);
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    transition: 200ms;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
 }
+
+.btn1:hover{
+    background: var(--bluesec);
+    border-color: var(--yellowacc);
+    border: 3px solid var(--yellowacc);
+    box-sizing: border-box;
+}
+
+
 
 .navbar{
     width: 100%;
@@ -47,13 +64,14 @@ body{
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 9999;
   }
 
 .navgrid{
     display : grid; 
     grid-template-areas: 
     "LOGO 3 4 5 HOME FAV CON AB IITG";
-    grid-template-columns:3fr 1fr 1fr 1fr 1fr 2fr 2fr 1fr 1fr ;
+    grid-template-columns:3fr 1fr 1fr 1fr 1fr 2fr 2fr 1fr   ;
     gap :20px;
     grid-template-rows: 80px;
 }
@@ -192,6 +210,180 @@ body{
     margin-top: 325px;
 }
 
+.year-of-study{
+    display : grid; 
+    grid-template-areas: 
+    "1 2 3 4";
+    grid-template-columns:3fr 3fr 3fr 3fr;
+    padding-left: 20px;
+    padding-right: 20px;
+    gap :20px;
+    grid-template-rows: 590px;
+}
 
 
 
+.year-card-1{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 590px;
+    width : auto;
+    background-image: url("../images/year1nohov.svg");
+    transition-duration: 300ms;
+    
+}
+
+.year-card-1:hover{
+    background-image: url("../images/year1hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.year-card-1 p{
+    font-size: 28px;
+    margin-top: 400px;
+}
+
+.year-card-2{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 590px;
+    width : auto;
+    background-image: url("../images/year2nohov.svg");
+    transition-duration: 300ms;
+    
+}
+
+.year-card-2:hover{
+    background-image: url("../images/year2hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.year-card-2 p{
+    font-size: 28px;
+    margin-top: 400px;
+}
+.year-card-3{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 590px;
+    width : auto;
+    background-image: url("../images/year3nohov.svg");
+    transition-duration: 300ms;
+    
+}
+
+.year-card-3:hover{
+    background-image: url("../images/year3hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.year-card-3 p{
+    font-size: 28px;
+    margin-top: 400px;
+}
+.year-card-4{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 590px;
+    width : auto;
+    background-image: url("../images/year4nohov.svg");
+    transition-duration: 300ms;
+    
+}
+
+.year-card-4:hover{
+    background-image: url("../images/year4hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-15px);
+}
+
+.year-card-4 p{
+    font-size: 28px;
+    margin-top: 400px;
+}
+
+.villain-grid{
+    display : grid; 
+    grid-template-areas: "1 cont 2 ";
+    grid-template-columns:2fr 8fr 2fr ;
+    gap : 20px;
+    grid-template-rows: 600px;
+    width: 100%;
+    left: 0px;
+    background:var(--blueprm);
+    color : var(--blueprm);
+}
+
+.vicontnew{
+    background-color: var(--bluesec);
+    margin-bottom:10vh;
+    margin-top:-10vh;
+
+    display : grid; 
+    grid-template-areas: "1 2";
+    grid-template-columns: 5fr 3fr ;
+    gap : 20px;
+    grid-template-rows:355px 190px;
+    width: 100%;
+    left: 0px;
+    color : var(--blueprm);
+}
+
+.contimg{
+    margin-top: -73px;
+    margin-right : -251px;
+}
+
+
+.footer{
+    width: 100%;
+    left: 0px;
+    height: 250px;
+    background: white;
+    color : var(--txtmain);
+    bottom: 0px;
+    width: 100%;
+    z-index: 0;
+}
+
+
+
+.vi a:link{
+    color : var(--yellowacc);
+}
+.vi a:visited{
+    color : var(--yellowacc);
+}
+.vi a:hover{
+    color : var(--yellowacc);
+}
+.vi a:active{
+    color : var(--yellowacc);
+}

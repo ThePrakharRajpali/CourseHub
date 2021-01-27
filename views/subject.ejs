@@ -10,8 +10,4 @@
             <li> <%= resource.name %> </li>
         <% }) %>
     </ul>
-    <form class="" action="/year/<% Subject.year %>/semester/<% Subject.semester %>/branch/<% Subject.branch %>/subject/<% subject_id %>/delete" method="post">
-        <input type="hidden" name="_method" value="delete"/>
-        <button type="submit" name="button">Delete</button>
-    </form>
 <%- include("partials/footer") %>

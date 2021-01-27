@@ -1,16 +1,19 @@
 <%- include("partials/header") %>
 <h1>Welcome to Coursehub</h1>
 
-<form class="" action="/year/<%= Year.linkName %>/semester/<%= Semester.name %>/branch/<%= Branch.name %>" method="post">
+<form
+class=""
+action="/year/<%= Year.linkName %>/semester/<%= Semester.name %>/branch/<%= Branch.name %>/subject"
+method="post">
     <label for="subjectCode">Subject Code:</label>
-    <input type="text" id="subjectCode" name="subjectCode" value="">
+    <input type="text" id="subjectCode" name="subjectCode" value="" required>
     <br>
 
     <label for="name">Subject Name:</label>
-    <input type="text" id="name" name="name" value="">
+    <input type="text" id="name" name="name" value="" required>
     <br>
     <label for="Branch">Branch Name:</label>
-    <select name="Icecream Flavours">
+    <select name="branch" required>
         <% branchKeys.forEach(key => { %>
         <option value="<%= key %>"><%= key %></option>
         <% }) %>
@@ -18,10 +21,10 @@
     <br>
 
     <label for="Year">Year:</label>
-    <input type="number" id="Year" name="year" value="">
+    <input type="number" id="Year" name="year" value="" required>
     <br>
     <label for="semesterNo">Semester Number:</label>
-    <input type="number" id="semesterNo" name="semesterNo" value="">
+    <input type="number" id="semesterNo" name="semesterNo" value="" required>
 
     <br>
 

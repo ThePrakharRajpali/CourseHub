@@ -2,28 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=0' >
     <link rel="stylesheet" href="style_header.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
-<nav class="navbar">
+        <script> 
+      
+            // JavaScript code 
+            function disableScrolling() { 
+                setTimeout(function() { 
+                    document.body.style.overflow = 'hidden'; 
+                }, 1000); 
+            } 
+              
+            function enableScrolling() { 
+                document.body.style.overflow = ''; 
+            } 
+        </script> 
+
+
+<nav class="navbar" id="topnav">
     <section class="navgrid">
-        <div class="nilogo"><img src="../images/LogoBY.svg"></div>
+        <div class="nilogo"><img src="../images/LogoBY.svg" ></div>
         <div class="ni"></div>
         <div class="ni"></div>
-        <div class="ni"></div>
-        <div class="ni">Home</div>
-        <div class="nifav">Favourites</div>
-        <div class="nicon">Contribute</div>
-        <div class="ni">About</div>
-        <div class="ni">IITG</div>
+        <div class="nisp" style="margin-top: -0.53rem;" id="navli">
+            <ul id="navlist">
+            <li>Home</li>
+            <li><div class="nifav">Favourites</div></li>
+            <li><div class="nicon">Contribute</div></li>
+            <li><div class="ni">About</div></li>
+            <li><div class="ni">IITG</div></li>
+            
+            </ul>
+        </div>
     </section>
 </nav>
 
-<br><br>
+<br>
 
 <section class="hero-grid">
     <div class="hi"></div>
@@ -39,7 +58,7 @@
        <p>All of your academic resources in a<br> single place</p>
 
     </div>
-    <div class="hiph"><img src="../images/hero-1.png"></div>
+    <div class="hiph"><img src="../images/hero-1.png" style="display:block;width:30rem;height:auto;"></div>
     <div class="hi"></div>
 </section>
 
@@ -47,8 +66,8 @@
 <p style ="padding-left:5.05rem;">Favourites</p>
 <br>
 
-<section class="universalgrid">
-    <div class="gi"></div>
+<section class="universalgrid" style="padding-left: 2.5rem ;">
+
     <div class="dtcard-book">
         <p>Automata</p>
     </div>
@@ -64,7 +83,6 @@
     <div class="dtcard-book">
         <p>Automata</p>
     </div>
-    <div class="gi"></div>
 </section>
 
 <br>
@@ -94,10 +112,10 @@
 <br><br><br><br><br><br>
 <br><br>
 
-<section class="villain-grid">
-    <div class="vi"></div>
+<section class="villain">
+    <div class="vibg"></div>
     <div class="vicontnew">
-        <div class="vi" style="margin-top: 96px;margin-left:90px;">
+        <div class="vi" style="margin-top: 3.43rem;margin-left:3.4123rem;">
             <div style="display: flex;align-items: baseline;font-weight:bold;">
                 <div>
                     Want to become a&nbsp;
@@ -106,20 +124,20 @@
                     contributor?
                 </div>
             </div>
-            <div class="vi" style="font-size:32px;">
+            <div class="vi" style="font-size:28px;">
                 Become a contributor and help us to<br> expand and improve CourseHub.IITG
             </div>
         </div>
-
+    
         <div class="contimg">
             <img src="../images/Contribute-1.png">
         </div>
-
-        <div class="vi" >
-            <button class="btn1" style="margin-left:357px ;"> 
+    
+        <div class="vi">
+            <button class="btn1" style="margin-left:12.75rem ;"> 
                 Sign Up!
             </button>
-            <div style="display: flex;align-items: baseline;font-size: 32px;margin-left:244px;margin-right: -120px;">
+            <div style="display: flex;align-items: baseline;font-size: 28px;margin-left:10.3143rem;margin-right: -4.286rem;">
                 <div>
                     Already a contributor?&nbsp;
                 </div> 
@@ -128,14 +146,14 @@
                 </div>
             </div>
         </div>
-
-        <div class="vi"></div>
     </div>
-    <div class="vi"></div>
+        <div class="vi"></div>
+    
+
 </section>
 <br>
 
-<footer class="footer" style="align-items: center;text-align: center;font-size: 32px;">
+<footer class="footer" style="align-items: center;text-align: center;font-size: 22px;">
     <div class="nilogo"><img src="../images/LogoBY.svg"></div>
     <table style="margin-left: auto;margin-right: auto;">
         <tr>
@@ -153,13 +171,13 @@
     </table>
     <table style="margin-left: auto;margin-right: auto;">
         <tr>
-          <td>&nbsp;&nbsp;<img src="../images/btnlinkedin.svg" style="width:24px;height:auto;">&nbsp;LINKEDIN&nbsp;&nbsp;</td>
-          <td>&nbsp;&nbsp;<img src="../images/btninsta.svg" style="width:24px;height:auto;">&nbsp;INSTAGRAM&nbsp;&nbsp;</td>
-          <td>&nbsp;&nbsp;<img src="../images/btnfb.svg" style="width:24px;height:auto;">&nbsp;FACEBOOK&nbsp;&nbsp;</td>
+          <td>&nbsp;<img src="../images/btnlinkedin.svg" style="width:24px;height:auto;">&nbsp;LinkedIn&nbsp;&nbsp;</td>
+          <td>&nbsp;<img src="../images/btninsta.svg" style="width:24px;height:auto;">&nbsp;Instagram&nbsp;</td>
+          <td>&nbsp;<img src="../images/btnfb.svg" style="width:24px;height:auto;">&nbsp;Facebook&nbsp;</td>
         </tr>
       </table>
       <hr style="width:83%;align-items:center;border: 1px solid rgba(81, 147, 222, 0.75);">
-      <p style="text-align: center;align-items: center;font-size: 22px;margin-top: -10px;">© 2021 COURSEHUB.IITG</p>
+      <p style="text-align: center;align-items: center;font-size: 18px;margin-top: -5px;">© 2021 COURSEHUB.IITG</p>
 </footer>
 
 

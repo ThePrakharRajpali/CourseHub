@@ -3,7 +3,7 @@
     <ul>
         <% branchKeys.forEach((key) => { %>
             <% if(key !== "freshmen") { %>
-                <li> <a href="/<%= Year.linkName %>/<%= Semester.name %>/<%= Branch[key].name %>"> <%= Branch[key].name %></a> </li>
+                <li> <a href="/year/<%= Year.linkName %>/semester/<%= Semester.name %>/branch/<%= Branch[key].name %>"> <%= Branch[key].name %></a> </li>
             <% } %>
         <% }) %>
     </ul>

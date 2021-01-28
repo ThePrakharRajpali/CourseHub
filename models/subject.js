@@ -5,6 +5,7 @@ var subjectSchema = new mongoose.Schema({
     year            : String,
     branch          : String,
     semester        : String,
+    yearNumber      : Number,
     semsterNumber   : Number,
     subjectCode     : String, //code eg. CS221
     resources       : [

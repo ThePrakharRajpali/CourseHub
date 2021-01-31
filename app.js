@@ -500,21 +500,21 @@ function deleteAllSubjects() {
 
 function getSemesterString(semesterNumber){
     switch (semesterNumber) {
-        case 1:
+        case '1' || 1:
             return "first";
-        case 2:
+        case '2' || 2:
             return "second";
-        case 3:
+        case '3' || 3:
             return "third";
-        case 4:
+        case '4' || 4:
             return "fourth";
-        case 5:
+        case '5' || 5:
             return "fifth";
-        case 6:
+        case '6' || 6:
             return "sixth";
-        case 7:
+        case '7' || 7:
             return "seventh";
-        case 8:
+        case '8' || 8:
             return "eighth";
         default:
             return null;
@@ -523,13 +523,13 @@ function getSemesterString(semesterNumber){
 
 function getYearString(yearNumber) {
     switch(yearNumber){
-        case 1:
+        case 1 || '1':
             return "firstYear";
-        case 2:
+        case 2 || '2':
             return "secondYear";
-        case 3:
+        case 3 || '3':
             return "thirdYear";
-        case 4:
+        case 4 || '4':
             return "fourthYear";
         default:
             return null;

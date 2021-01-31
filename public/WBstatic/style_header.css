@@ -1,12 +1,30 @@
 :root{
     font-family: 'Poppins', sans-serif;
-    font-size: 32px;
+    font-size: 28px;
     --txtmain: #595959;
     --blueprm:#00296B;
     --bluesec: #5193DE;
     --bluetri: #1D416B;
     --yellowacc: #F3BB02;
     --cardbg :#D0D0D0;
+}
+::-webkit-scrollbar {
+    width: 10px;
+
+  }
+  /* Track */
+::-webkit-scrollbar-track {
+    width:0px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: var(--txtmain); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: var(--txtmain); 
 }
 
 .image{
@@ -16,64 +34,78 @@
 body{
     color: var(--txtmain);
     background-color: white;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 }
 
 .universalgrid{
     display : grid; 
-    grid-template-areas: 
-    "1 A B C D E 2";
-    grid-template-columns:1fr 2fr 2fr 2fr 2fr 2fr 1fr;
-    gap :20px;
-    grid-template-rows: 377px;
+    gap :0.714rem;
+    grid-template-columns:repeat(auto-fill, minmax(10.281rem,10.281rem));
+    grid-auto-rows: 13.464rem;
 }
 
-.year-of-study{
-    display : grid; 
-    grid-template-areas: 
-    "1 2 3 4";
-    grid-template-columns:3fr 3fr 3fr 3fr;
-    gap :20px;
-    grid-template-rows: 377px;
+.btn1{
+    width: 10.821rem;
+    height: 2.857rem;
+    border-radius: 25px;
+    background: var(--blueprm);
+    color: var(--yellowacc);
+    border: none;
+    text-align: center;
+    font-size: 32px;
+    transition: 200ms;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
 }
+
+.btn1:hover{
+    background: var(--bluesec);
+    border-color: var(--yellowacc);
+    border: 3px solid var(--yellowacc);
+    box-sizing: border-box;
+}
+
+
 
 .navbar{
+    overflow: hidden;
     width: 100%;
     left: 0px;
-    height: 80px;
+    height: 2.143rem;
     background: white;
     color : var(--txtmain);
     position: fixed;
     top: 0px;
     width: 100%;
+    z-index: 9999;
   }
+
 
 .navgrid{
     display : grid; 
     grid-template-areas: 
     "LOGO 3 4 5 HOME FAV CON AB IITG";
-    grid-template-columns:3fr 1fr 1fr 1fr 1fr 2fr 2fr 1fr 1fr ;
-    gap :20px;
-    grid-template-rows: 80px;
+    grid-template-columns:3fr 1fr 1fr 7fr;
+    gap :0.714rem;
+    grid-template-rows: 2.143rem;
 }
 
-.ni{
-    display :flex;
-    flex-direction : column;
-    align-items: center;
-    justify-content: center;
-}
+ul#navlist li {
+    display:inline-block;
+    list-style-type: none;
+    padding-right: 2rem;
+  }
 
 .nilogo{
-    display :flex;
-    flex-direction : column;
+    display: flex;
+    flex-direction: column;
     justify-content:center;
 }
 
 .nifav{
-    display :flex;
-    flex-direction : column;
+
+
     align-items: center;
     justify-content:center;
     font-style: normal;
@@ -83,8 +115,8 @@ body{
 }
 
 .nicon{
-    display :flex;
-    flex-direction : column;
+
+
     align-items: center;
     justify-content:center;
     color : var(--yellowacc);
@@ -94,8 +126,8 @@ body{
     display : grid; 
     grid-template-areas: "1 text photo 2 ";
     grid-template-columns:1fr 4fr 6fr 1fr ;
-    gap : 20px;
-    grid-template-rows: 700px;
+    gap :0.714rem;
+    grid-template-rows: 25rem;
     width: 100%;
     left: 0px;
     background:var(--bluesec);
@@ -114,20 +146,23 @@ body{
     flex-direction : column;
     align-items: left;
     justify-content: center;
-    padding-top:20vh;
+    padding-top:7.1357rem;
 }
 
 .dtcard-book{
     background-image: url("../images/booknohovcard.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
     border-radius: 25px;
-    display: inline-block;
+    display: flex;
     position: relative;
     flex-direction: column;
     transition-duration: 300ms;
     text-align: center;
     align-items:center;
     justify-content:center;
-    height : 377px;
+    height : 13.4643rem;
 }
 
 .dtcard-book:hover{
@@ -139,20 +174,23 @@ body{
 
 .dtcard-book p {
     font-size: 28px;
-    margin-top: 325px;
+    margin-top: 11.607rem;
 }
 
 .dtcard-ln{
     background-image: url("../images/lnnohovcard.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
     border-radius: 25px;
-    display: inline-block;
+    display: flex;
     position: relative;
     flex-direction: column;
     transition-duration: 300ms;
     text-align: center;
     align-items:center;
     justify-content:center;
-    height : 377px;
+    height : 13.4643rem;
 }
 
 .dtcard-ln:hover{
@@ -164,20 +202,23 @@ body{
 
 .dtcard-ln p {
     font-size: 28px;
-    margin-top: 325px;
+    margin-top: 11.607rem;
 }
 
 .dtcard-ls{
     background-image: url("../images/lsnohovcard.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
     border-radius: 25px;
-    display: inline-block;
+    display: flex;
     position: relative;
     flex-direction: column;
     transition-duration: 300ms;
     text-align: center;
     align-items:center;
     justify-content:center;
-    height : 377px;
+    height : 13.4643rem;
 }
 
 .dtcard-ls:hover{
@@ -189,9 +230,188 @@ body{
 
 .dtcard-ls p {
     font-size: 28px;
-    margin-top: 325px;
+    margin-top: 11.607rem;
+}
+
+.year-of-study{
+    display : grid; 
+    grid-template-columns:repeat(auto-fill, minmax(16.25rem,16.25rem));
+    padding-left: 0.7143rem;
+    padding-right: 0.7143rem;
+    gap :0.5rem;
+    grid-auto-rows: 21.0714rem;
 }
 
 
 
+.year-card-1{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 21.07143rem;
+    width : auto;
+    background-image: url("../images/year1nohov.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    transition-duration: 300ms;
+    
+}
 
+.year-card-1:hover{
+    background-image: url("../images/year1hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-0.54rem);
+}
+
+.year-card-1 p{
+    font-size: 28px;
+    margin-top: 14.286rem;
+}
+
+.year-card-2{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 21.07143rem;
+    width : auto;
+    background-image: url("../images/year2nohov.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    transition-duration: 300ms;
+    
+}
+
+.year-card-2:hover{
+    background-image: url("../images/year2hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-0.54rem);
+}
+
+.year-card-2 p{
+    font-size: 28px;
+    margin-top: 14.286rem;
+}
+.year-card-3{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 21.07143rem;
+    width : auto;
+    background-image: url("../images/year3nohov.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    transition-duration: 300ms;
+    
+}
+
+.year-card-3:hover{
+    background-image: url("../images/year3hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-0.54rem);
+}
+
+.year-card-3 p{
+    font-size: 28px;
+    margin-top: 14.286rem;
+}
+.year-card-4{
+    display: inline-block;
+    border-radius: 25px;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    align-items:center;
+    justify-content:center;
+    height : 21.07143rem;
+    width : auto;
+    background-image: url("../images/year4nohov.svg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+    transition-duration: 300ms;
+    
+}
+
+.year-card-4:hover{
+    background-image: url("../images/year4hov.svg");
+    color : var(--yellowacc);
+    border-radius: 25px;
+    transform : translateY(-0.54rem);
+}
+
+.year-card-4 p{
+    font-size: 28px;
+    margin-top: 14.286rem;
+}
+
+.vibg{
+    height: 20rem; 
+    width: 100%;
+    left: 0px;
+    background:var(--blueprm);
+    color : var(--blueprm);
+}
+
+.vicontnew{
+    margin-left: auto;
+    margin-right:auto;
+    margin-bottom:3.568rem;
+    margin-top:-24rem;
+    background-color: var(--bluesec);
+    display : grid; 
+    grid-template-columns: 5fr 3fr ;
+    grid-template-rows:12.68rem 6.786rem;
+    width: 60%;
+    left: 0px;
+    color : var(--blueprm);
+}
+
+.contimg{
+    margin-top: -2.607rem;
+    margin-right : -8.9642rem;
+}
+
+
+.footer{
+    width: 100%;
+    left: 0px;
+    height: 8.929rem;
+    background: white;
+    color : var(--txtmain);
+    bottom: 0px;
+    width: 100%;
+    z-index: 0;
+}
+
+
+
+.vi a:link{
+    color : var(--yellowacc);
+}
+.vi a:visited{
+    color : var(--yellowacc);
+}
+.vi a:hover{
+    color : var(--yellowacc);
+}
+.vi a:active{
+    color : var(--yellowacc);
+}

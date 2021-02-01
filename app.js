@@ -174,7 +174,12 @@ var semesterKeys = Object.keys(Semester);
 // HOME SCREEN
 ////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("home",{
+        Semester     : Semester,
+        semesterKeys : semesterKeys,
+        Branch       : Branch,
+        branchKeys   : branchKeys,
+    });
 });
 
 app.get("/404", (req, res) => {
@@ -207,16 +212,22 @@ app.get("/semester/:semester/branch/:branch", (req, res) => {
             if(err) {
                 console.log(err);
             } else {
-                res.render("")
+                res.render("branch", {
+                    Semester     : Semester[req.params.semester],
+                    semesterKeys : semesterKeys,
+                    Branch       : Branch[req.params.branch],
+                    branchKeys   : branchKeys,
+                    Subjects     : subjects,
+                });
             }
         })
     } else {
-        res.redirect("")
+        res.redirect("/404")
     }
 });
 
 app.get("/subject/:subject", (req, res) => {
-
+    
 });
 
 app.listen(3000, process.env.IP, () => {

@@ -1,6 +1,23 @@
 <%- include("partials/header") %>
     <h1>Welcome to Coursehub</h1>
+    <h2>See All Semesters</h2>
     <ul>
+
+        <% semesterKeys.forEach(key => { %>
+            <% if(key == "first" || key == "second"){ %>
+                <li>
+                    <a href="/semester/<%= Semester[key].name %>/branch/freshmen">
+                        <%= Semester[key].name %>
+                    </a>
+                </li>
+            <% } else { %>
+                <li>
+                    <a href="/semester/<%= Semester[key].name %>">
+                        <%= Semester[key].name %>
+                    </a>
+                </li>
+            <% } %>
+        <% }) %>
 
     </ul>
 <%- include("partials/footer") %>

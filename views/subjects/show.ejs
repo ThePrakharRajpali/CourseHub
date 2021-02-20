@@ -7,7 +7,9 @@
         <%= Subject.branch %> <br>
         <%= Subject.semester %> <br>
         <%= Subject.semesterNumber %> <br>
-        <%= Subject.subjectCode %>
+        <%= Subject.subjectCode %> <br>
     </p>
 
+    <a href="/subject/<%= Subject._id %>/edit">Edit</a>
+    <a href="#">Delete</a>
 <%- include("../partials/footer") %>

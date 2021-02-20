@@ -318,11 +318,44 @@ app.get("/subject/:subject/edit", (req, res) => {
             console.log(err);
         } else {
             res.render('subjects/edit', {
-                Subject : foundSubject,
+                Subject    : foundSubject,
+                Branch     : Branch,
+                branchKeys : branchKeys
             });
         }
     });
 });
+
+app.put("/subject/:subject", (req, res) => {
+    var name           = req.body.subjectName;
+    var branch         = req.body.subjectBranch;
+    var semesterNumber = req.body.subjectSemesterNumber;
+    var subjectCode    = req.body.subjectCode;
+    var semester       = getSemesterString(semesterNumber);
+
+    var editedSubject = {
+        name           : name,
+        branch         : branch,
+        semester       : semester,
+        semesterNumber : semesterNumber,
+        subjectCode    : subjectCode
+    };
+
+    Subject.findByIdAndUpdate(req.params.subject, editedSubject, (err, updatedSubject) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(updatedSubject);
+            res.redirect(`/subject/${updatedSubject._id}`)
+        }
+    });
+});
+
+app.delete("/subject/:subject", (req, res) => {
+
+});
+
+////////////////////////////////////////////////////////////////////////////////
 
 app.listen(3000, process.env.IP, () => {
     console.log("Server started at Port:3000");
@@ -337,6 +370,7 @@ function deleteAllSubjects() {
         console.log("Removed subjects");
     })
 }
+
 
 function getSemesterString(semesterNumber){
     switch (semesterNumber) {

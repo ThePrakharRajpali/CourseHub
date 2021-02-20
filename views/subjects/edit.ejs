@@ -1,0 +1,55 @@
+<%- include("../partials/header") %>
+
+    <h1>Welcome to CourseHub</h1>
+
+    <h2>Edit Subject</h2>
+    <p>
+        <%= Subject.name %> <br>
+        <%= Subject.branch %> <br>
+        <%= Subject.semester %> <br>
+        <%= Subject.semesterNumber %> <br>
+        <%= Subject.subjectCode %> <br>
+    </p>
+
+    <form class="" action="/subject/<%= Subject._id %>?_method=PUT" method="post">
+        <label for="subjectName">Name of Subject: <br> </label>
+        <input type="text" name="subjectName" id="subjectName" value="<%= Subject.name %>">
+        <br>
+
+        <label for="subjectBranch">Branch: <br> </label>
+        <select class="" id="subjectBranch" name="subjectBranch">
+            <% branchKeys.forEach(key => {  %>
+                <% if(Subject.branch == Branch[key].name){  %>
+                    <option value="<%= Branch[key].name %>" selected>
+                        <%= Branch[key].name %>
+                    </option>
+                <% } else {  %>
+                    <option value="<%= Branch[key].name %>">
+                        <%= Branch[key].name %>
+                    </option>
+                <% } %>
+            <% }) %>
+        </select>
+
+        <br>
+
+        <label for="subjectSemester">Semester: <br> </label>
+        <select id="subjectSemester" name="subjectSemesterNumber">
+            <% for (var i = 1; i <= 8; i++) { %>
+                <% if(Subject.semesterNumber == i){ %>
+                    <option value="<%= i %>" selected><%= i %></option>
+                <% } else { %>
+                    <option value="<%= i %>"><%= i %></option>
+                <% } %>
+            <% } %>
+        </select>
+        <br>
+
+        <label for="subjectCode">Code: <br> </label>
+        <input type="text" name="subjectCode" id="subjectCode" value="<%= Subject.subjectCode %>">
+
+        <input type="submit" name="" value="SUBMIT">
+
+    </form>
+
+<%- include("../partials/footer") %>

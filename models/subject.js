@@ -4,7 +4,7 @@ var subjectSchema = new mongoose.Schema({
     name            : String, //official name eg. Digital design
     branch          : String,
     semester        : String,
-    semesterNumber   : String, // Number as a string
+    semesterNumber  : String, // Number as a string
     subjectCode     : String, //code eg. CS221
     resources       : [
         {

@@ -174,7 +174,12 @@ var semesterKeys = Object.keys(Semester);
 // HOME SCREEN
 ////////////////////////////////////////////////////////////////////////////////
 app.get("/", (req, res) => {
-    res.render("home");
+    res.render("home",{
+        Semester     : Semester,
+        semesterKeys : semesterKeys,
+        Branch       : Branch,
+        branchKeys   : branchKeys,
+    });
 });
 
 app.get("/404", (req, res) => {
@@ -207,16 +212,111 @@ app.get("/semester/:semester/branch/:branch", (req, res) => {
             if(err) {
                 console.log(err);
             } else {
-                res.render("")
+                res.render("branch", {
+                    Semester     : Semester[req.params.semester],
+                    semesterKeys : semesterKeys,
+                    Branch       : Branch[req.params.branch],
+                    branchKeys   : branchKeys,
+                    Subjects     : subjects,
+                });
             }
         })
     } else {
-        res.redirect("")
+        res.redirect("/404")
     }
 });
 
-app.get("/subject/:subject", (req, res) => {
+app.get("/semester/:semester/branch/:branch/new", (req, res) =>{
+    if(
+        semesterKeys.includes(req.params.semester)
+        && branchKeys.includes(req.params.branch)
+        && Branch[req.params.branch]
+    ) {
+        res.redirect("/subject/new")
+    } else {
+        res.redirect("/404")
+    }
+})
 
+// app.get("/semester/:semester/branch/:branch/subject/:subject", (req, res) => {
+//     if(
+//         semesterKeys.includes(req.params.semester)
+//         && branchKeys.includes(req.params.branch)
+//         && Branch[req.params.branch]
+//     ) {
+//         res.redirect(`/subject/${req.params.subject}`);
+//     } else {
+//         res.redirect("/404")
+//     }
+// });
+app.get("/subject", (req, res) => {
+    Subject.find({}, (err, foundSubject) => {
+        if(err){
+            console.log(err);
+        } else {
+            res.render("subjects/index", {
+                Subjects : foundSubject,
+            })
+        }
+    })
+});
+
+app.get("/subject/new", (req, res) => {
+    res.render("subjects/new");
+});
+
+app.get("/subject/:subject", (req, res) => {
+    Subject.findById(req.params.subject, (err, foundSubject) => {
+        if(err){
+            console.log(err);
+        } else {
+            Resource.find({
+                    courseNumber: foundSubject.subjectCode
+                }, (err, foundResources) => {
+
+                if(err){
+                    console.log(err);
+                } else {
+                    res.render('subjects/show', {
+                        Subject : foundSubject,
+                        Resources : foundResources
+                    });
+                }
+            });
+        }
+    });
+});
+
+app.post("/subject", (req, res) => {
+    var name = req.body.subjectName;
+    var branch = req.body.subjectBranch;
+    var semesterNumber = Number(req.body.subjectSemesterNumber);
+    var subjectCode = req.body.subjectCode;
+    var semester = getSemesterString(semesterNumber);
+
+    var newSubject = new Subject({
+        name           : name,
+        branch         : branch,
+        semester       : semester,
+        semesterNumber : semesterNumber,
+        subjectCode    : subjectCode,
+        resources      : []
+    });
+
+    newSubject.save(err => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(newSubject);
+            res.redirect("/subject")
+        }
+    });
+});
+
+app.get("/subject/:subject/edit", (req, res) => {
+    Subject.findById(req.params.subject, (err, foundSubject) => {
+
+    });
 });
 
 app.listen(3000, process.env.IP, () => {

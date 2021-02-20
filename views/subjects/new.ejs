@@ -1,0 +1,39 @@
+<%- include("../partials/header") %>
+
+    <h1>Welcome to CourseHub</h1>
+
+    <h2>New Subject</h2>
+
+    <form class="" action="/subject" method="post">
+        <label for="subjectName">Name of Subject: <br> </label>
+        <input type="text" name="subjectName" id="subjectName" value="">
+        <br>
+
+        <label for="subjectBranch">Branch: <br> </label>
+        <select class="" id="subjectBranch" name="">
+            <option value="freshmen">First Yearite</option>
+            <option value="CSE">CSE</option>
+            <option value="MNC">MNC</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="Mech">Mech</option>
+            <option value="Chem">Chem</option>
+            <option value="Civil">Civil</option>
+            <option value="CST">CST</option>
+            <option value="EPH">EPH</option>
+            <option value="BSBE">BSBE</option>
+        </select>
+
+        <br>
+
+        <label for="subjectSemester">Semester: <br> </label>
+        <input type="number" name="subjectSemesterNumber"  id="subjectSemester" value="">
+        <br>
+
+        <label for="subjectCode">Code: <br> </label>
+        <input type="text" name="subjectCode" id="subjectCode" value="">
+
+        <input type="submit" name="" value="SUBMIT">
+    </form>
+
+<%- include("../partials/footer") %>

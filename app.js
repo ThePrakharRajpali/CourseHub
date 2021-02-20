@@ -288,19 +288,18 @@ app.get("/subject/:subject", (req, res) => {
 });
 
 app.post("/subject", (req, res) => {
-    var name = req.body.subjectName;
-    var branch = req.body.subjectBranch;
-    var semesterNumber = Number(req.body.subjectSemesterNumber);
-    var subjectCode = req.body.subjectCode;
-    var semester = getSemesterString(semesterNumber);
+    var name           = req.body.subjectName;
+    var branch         = req.body.subjectBranch;
+    var semesterNumber = req.body.subjectSemesterNumber;
+    var subjectCode    = req.body.subjectCode;
+    var semester       = getSemesterString(semesterNumber);
 
     var newSubject = new Subject({
         name           : name,
         branch         : branch,
         semester       : semester,
         semesterNumber : semesterNumber,
-        subjectCode    : subjectCode,
-        resources      : []
+        subjectCode    : subjectCode
     });
 
     newSubject.save(err => {
@@ -315,7 +314,13 @@ app.post("/subject", (req, res) => {
 
 app.get("/subject/:subject/edit", (req, res) => {
     Subject.findById(req.params.subject, (err, foundSubject) => {
-
+        if(err){
+            console.log(err);
+        } else {
+            res.render('subjects/edit', {
+                Subject : foundSubject,
+            });
+        }
     });
 });
 

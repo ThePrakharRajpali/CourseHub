@@ -352,7 +352,14 @@ app.put("/subject/:subject", (req, res) => {
 });
 
 app.delete("/subject/:subject", (req, res) => {
-
+    Subject.findByIdAndRemove(req.params.subject, (err) => {
+        if(err){
+            console.log(err);
+        } else {
+            console.log('subject deleted');
+            res.redirect("/")
+        }
+    })
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -360,7 +367,6 @@ app.delete("/subject/:subject", (req, res) => {
 app.listen(3000, process.env.IP, () => {
     console.log("Server started at Port:3000");
 });
-
 
 function deleteAllSubjects() {
     Subject.deleteMany({}, (err) => {
@@ -370,7 +376,6 @@ function deleteAllSubjects() {
         console.log("Removed subjects");
     })
 }
-
 
 function getSemesterString(semesterNumber){
     switch (semesterNumber) {

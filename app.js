@@ -351,8 +351,9 @@ app.put("/subject/:subject", (req, res) => {
     });
 });
 
+// TODO: DELETE NOT WORKING
 app.delete("/subject/:subject", (req, res) => {
-    Subject.findByIdAndRemove(req.params.subject, (err) => {
+    Subject.remove({_id: req.params.subject}, (err) => {
         if(err){
             console.log(err);
         } else {
@@ -360,6 +361,23 @@ app.delete("/subject/:subject", (req, res) => {
             res.redirect("/")
         }
     })
+});
+
+app.get("/subject/:subject/resources/new", (req, res) => {
+
+});
+
+app.get("/resources/:resource", (req, res) => {
+    Resource.findById(req.params.resource, (err, foundResource) => {
+        if(err){
+            console.log(err);
+            res.redirect('/404');
+        } else {
+            res.render('resources/show', {
+                resource: foundResource
+            });
+        }
+    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -372,8 +390,9 @@ function deleteAllSubjects() {
     Subject.deleteMany({}, (err) => {
         if(err) {
             console.log(err);
+        } else {
+            console.log("Removed subjects");
         }
-        console.log("Removed subjects");
     })
 }
 

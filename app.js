@@ -351,8 +351,33 @@ app.put("/subject/:subject", (req, res) => {
     });
 });
 
+// TODO: DELETE NOT WORKING
 app.delete("/subject/:subject", (req, res) => {
+    Subject.remove({_id: req.params.subject}, (err) => {
+        if(err){
+            console.log(err);
+        } else {
+            console.log('subject deleted');
+            res.redirect("/")
+        }
+    })
+});
 
+app.get("/subject/:subject/resources/new", (req, res) => {
+
+});
+
+app.get("/resources/:resource", (req, res) => {
+    Resource.findById(req.params.resource, (err, foundResource) => {
+        if(err){
+            console.log(err);
+            res.redirect('/404');
+        } else {
+            res.render('resources/show', {
+                resource: foundResource
+            });
+        }
+    });
 });
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -361,16 +386,15 @@ app.listen(3000, process.env.IP, () => {
     console.log("Server started at Port:3000");
 });
 
-
 function deleteAllSubjects() {
     Subject.deleteMany({}, (err) => {
         if(err) {
             console.log(err);
+        } else {
+            console.log("Removed subjects");
         }
-        console.log("Removed subjects");
     })
 }
-
 
 function getSemesterString(semesterNumber){
     switch (semesterNumber) {

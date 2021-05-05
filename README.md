@@ -6,25 +6,9 @@
 # CourseHub.IITG
 CourseHub is a course management platform created to help students by providing them with course materials and other academic-related solutions.
 # Landing Page and other Assets
-**Home/Store Page**
+**Landing Page**
 
-![](/demophoto/store.png)
-
-**Cart Page**
-
-![](/demophoto/cart.png)
-
-**Checkout Page**
-
-![](/demophoto/checkout.png)
-
-**Sign In Page**
-
-![](/demophoto/signin.png)
-
-**Sign Up Page**
-
-![](/demophoto/signup.png)
+![](/ReadMe Assets/Landing Page.png)
 
 # Getting Started
 To get started you can simply clone this `CourseHub` repository and install the dependencies.
@@ -66,6 +50,7 @@ python manage.py runserver
 - JavaScript
 - HTML/CSS
 - Anime.js
+- 
 
        
 

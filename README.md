@@ -1,8 +1,3 @@
-
-#### HOW TO RUN:
-1. npm install 
-2. mongod
-3. node app.js
 # CourseHub.IITG
 CourseHub is a course management platform created to help students by providing them with course materials and other academic-related solutions.
 # Landing Page and other Assets

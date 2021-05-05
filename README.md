@@ -9,6 +9,7 @@ CourseHub is a course management platform created to help students by providing 
 **Landing Page**
 
 ![](/ReadMe Assets/Landing Page.png)
+<img src="ReadMe Assets/Landing Page.png" alt="LandingPage" width="1440"/>
 
 # Getting Started
 To get started you can simply clone this `CourseHub` repository and install the dependencies.

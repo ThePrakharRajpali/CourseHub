@@ -9,19 +9,6 @@
     <title>Document</title>
 </head>
 <body>
-        <script> 
-      
-            // JavaScript code 
-            function disableScrolling() { 
-                setTimeout(function() { 
-                    document.body.style.overflow = 'hidden'; 
-                }, 1000); 
-            } 
-              
-            function enableScrolling() { 
-                document.body.style.overflow = ''; 
-            } 
-        </script> 
 
 
 <nav class="navbar" id="topnav">
@@ -30,43 +17,85 @@
         <div class="ni"></div>
         <div class="ni"></div>
         <div class="nisp" style="margin-top: -0.53rem;" id="navli">
-            <ul id="navlist">
-            <li>Home</li>
-            <li><div class="nifav">Favourites</div></li>
-            <li><div class="nicon">Contribute</div></li>
-            <li><div class="ni">About</div></li>
-            <li><div class="ni">IITG</div></li>
             
+            <ul id="navlist">
+                <li>Home</li>
+                <li>
+                    <div class="nifav">Sign Up</div>
+                </li>
+                <li>
+                    <div class="nicon">Contribute</div>
+                </li>
+                <li>
+                    <div class="ni">About</div>
+                </li>
+                <li>
+                    <div class="ni">IITG</div>
+                </li>
             </ul>
+    
+            <div class="navburger" id="burger">
+                <button class="dropbtn">
+                    
+                    <img src='../images/burgiconnohov.svg' 
+                    style = "">
+                </button>
+                <div class="dropdown-content">
+                    <a href="#">Home</a>
+                    <a href="#"><div class="nifav">Sign Up</div></a>
+                    <a href="#"><div class="nicon">Contribute</div></a>
+                    <a href="#"><div class="ni">About</div></a>
+                    <a href="#"><div class="ni">IITG</div></a>
+                </div>
+            </div>
+        
         </div>
     </section>
 </nav>
 
 <br>
 
-<section class="hero-grid">
-    <div class="hi"></div>
-    <div class="hitxt">
-        <div style="display: flex;align-items: baseline;">
+<section class="hero-grid" id="hero-PC">
+
+    <div class="hitxt" style="padding-left: 5.05rem;">
+        <div style="display: flex;align-items: baseline;width:20rem;">
             <div style="font-weight:700;">
                 Learning online&nbsp;
             </div> 
-            <div style="color:#F3BB02; font-size:48px; font-weight:700;">
+            <div style="color:#F3BB02; font-size:1.7143rem; font-weight:700;">
                 simplified.
             </div>
         </div>
-       <p>All of your academic resources in a<br> single place</p>
+       <p style="max-width:20rem;">All of your academic resources in a single place</p>
 
     </div>
-    <div class="hiph"><img src="../images/hero-1.png" style="display:block;width:30rem;height:auto;"></div>
-    <div class="hi"></div>
+    <div class="hiph"><img src="../images/hero-1.png" style="padding-left:5.05rem;margin-top:7.4rem;display:block;width:30rem;height:auto;"></div>
+
+</section>
+
+
+<section class="hero-MB" id="hero-MB" style="font-size: 0.75rem;" >
+    <div class="hitxt" style="padding-left: 1.55rem;">
+        <div style="display: flex;align-items: baseline;margin-top:3rem;">
+            <div style="font-weight:700;">
+                Learning &nbsp;
+            </div> 
+            <div style="color:#F3BB02; font-size:1.2rem; font-weight:700;">
+                simplified.
+            </div>
+        </div>
+       <p style="max-width:20rem;">All of your academic resources in a single place</p>
+
+    </div>
+    <div class="hiph" id='hero-asset' style="margin-top: 5rem;padding-left: 1.05rem;"><img src="../images/hero-1.png" style="display:block;width:15rem;height:auto;"></div>
+
 </section>
 
 <br><br><br>
-<p style ="padding-left:5.05rem;">Favourites</p>
+<p style ="padding-left:5.05rem;font-size: 1.25rem;">Favourites</p>
 <br>
 
-<section class="universalgrid" style="padding-left: 2.5rem ;">
+<section class="universalgrid" style="padding-left: 1.5rem ;">
 
     <div class="dtcard-book">
         <p>Automata</p>
@@ -86,7 +115,7 @@
 </section>
 
 <br>
-<p style ="padding-left:5.05rem;">Year of Study</p>
+<p style ="padding-left:5.05rem;font-size: 1.25rem;">Year of Study</p>
 <br>
 
 <section class="year-of-study">
@@ -110,9 +139,10 @@
 </section>
     
 <br><br><br><br><br><br>
-<br><br>
 
-<section class="villain">
+
+<section class="CTA" id = 'CTA-PC'>
+    <br><br>
     <div class="vibg"></div>
     <div class="vicontnew">
         <div class="vi" style="margin-top: 3.43rem;margin-left:3.4123rem;">
@@ -150,6 +180,48 @@
         <div class="vi"></div>
     
 
+</section>
+
+<section class="CTA" id = 'CTA-MB'>
+    
+    <div class="vibg"></div>
+    <div class="vili">
+    <ul id="CTAli" >
+        <li>
+            <img src="../images/Contribute-1.png" style="min-width:350px;width:37vw;height:auto;margin-top:-7vw;">
+        </li>
+        <li>
+            <div style="align-items: baseline;font-weight:bold;">
+                <span>
+                    Want to become a&nbsp;
+                </span> 
+                <span style="color:#F3BB02; font-size:1.2rem;">
+                    contributor?
+                </span>
+            </div>
+        </li>
+        <li>
+            <div class="vi" style="font-size:1rem;">
+                Become a contributor and help us to expand and improve CourseHub.IITG
+            </div>
+        </li>
+        <li>
+            <button class="btn1" > 
+                Sign Up!
+            </button>
+        </li>
+        <li>
+            <div style="align-items: baseline;font-size: 28px;">
+            <span>
+                Already a contributor?&nbsp;
+            </span> 
+            <span class="vi" style="color:#F3BB02;text-decoration:underline;">
+                <a href="#">Login here</a>
+            </span>
+            </div>
+        </li>
+    </ul>
+</div>
 </section>
 <br>
 

@@ -10,12 +10,9 @@
 }
 ::-webkit-scrollbar {
     width: 10px;
+    height:9px;
 
   }
-  /* Track */
-::-webkit-scrollbar-track {
-    width:0px;
-}
  
 /* Handle */
 ::-webkit-scrollbar-thumb {
@@ -36,11 +33,12 @@ body{
     background-color: white;
     margin: 0px;
     padding: 0px;
+    overflow-x: hidden; 
 }
 
 .universalgrid{
     display : grid; 
-    gap :0.714rem;
+    gap :0.25rem;
     grid-template-columns:repeat(auto-fill, minmax(10.281rem,10.281rem));
     grid-auto-rows: 13.464rem;
 }
@@ -54,7 +52,7 @@ body{
     border: none;
     text-align: center;
     font-size: 32px;
-    transition: 200ms;
+    transition: 150ms;
     font-family: 'Poppins', sans-serif;
     outline: none;
 }
@@ -97,13 +95,46 @@ ul#navlist li {
     padding-right: 2rem;
   }
 
+.navburger{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+} 
+
+.dropbtn {
+  background-color: white;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  padding-right: 2vw;
+  padding-left:60vw;
+  height:0.8rem;
+  width:auto; 
+  margin-top:1.1rem;
+}
+
+
+@media screen and (min-width: 500px) and (max-width: 1656px) {
+
+    #navlist { display: none; }  
+    #burger { display: flex; }
+    #CTA-PC {display : none;}
+  }
+  
+  @media screen and (min-width: 1657px) {
+    #burger { display: none; } 
+    #CTA-MB {display : none;}
+  }
+
 .nilogo{
     display: flex;
     flex-direction: column;
     justify-content:center;
 }
 
-.nifav{
+.nisign{
 
 
     align-items: center;
@@ -115,19 +146,39 @@ ul#navlist li {
 }
 
 .nicon{
-
-
     align-items: center;
     justify-content:center;
     color : var(--yellowacc);
 }
 
+
+@media screen and (min-width: 500px) and (max-width: 1111px) {
+
+    #hero-PC { display: none; }  
+
+  }
+  
+  @media screen and (min-width: 1112px) {
+    #hero-MB { display: none; } 
+
+  }
+
 .hero-grid{
     display : grid; 
-    grid-template-areas: "1 text photo 2 ";
-    grid-template-columns:1fr 4fr 6fr 1fr ;
+    grid-template-columns:repeat(auto-fill, minmax(17.141rem,6fr));
     gap :0.714rem;
     grid-template-rows: 25rem;
+    width: 100%;
+    left: 0px;
+    background:var(--bluesec);
+    color : var(--blueprm);
+}
+
+.hero-MB{
+    display : grid; 
+    grid-template-areas: '1 2';
+    grid-template-columns:50% 50%;
+    grid-template-rows: 15rem;
     width: 100%;
     left: 0px;
     background:var(--bluesec);
@@ -139,6 +190,7 @@ ul#navlist li {
     flex-direction : column;
     align-items: left;
     justify-content: center;
+    
 }
 
 .hiph{
@@ -146,7 +198,8 @@ ul#navlist li {
     flex-direction : column;
     align-items: left;
     justify-content: center;
-    padding-top:7.1357rem;
+    
+
 }
 
 .dtcard-book{
@@ -167,7 +220,7 @@ ul#navlist li {
 
 .dtcard-book:hover{
     background-image: url("../images/bookhovcard.svg");
-    color : var(--yellowacc);
+    color : var(--blueprm);
     border-radius: 25px;
     transform : translateY(-15px);
 }
@@ -195,7 +248,7 @@ ul#navlist li {
 
 .dtcard-ln:hover{
     background-image: url("../images/lnhovcard.svg");
-    color : var(--yellowacc);
+    color : var(--blueprm);
     border-radius: 25px;
     transform : translateY(-15px);
 }
@@ -223,7 +276,7 @@ ul#navlist li {
 
 .dtcard-ls:hover{
     background-image: url("../images/lshovcard.svg");
-    color : var(--yellowacc);
+    color : var(--blueprm);
     border-radius: 25px;
     transform : translateY(-15px);
 }
@@ -236,8 +289,8 @@ ul#navlist li {
 .year-of-study{
     display : grid; 
     grid-template-columns:repeat(auto-fill, minmax(16.25rem,16.25rem));
-    padding-left: 0.7143rem;
-    padding-right: 0.7143rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
     gap :0.5rem;
     grid-auto-rows: 21.0714rem;
 }
@@ -369,6 +422,26 @@ ul#navlist li {
     background:var(--blueprm);
     color : var(--blueprm);
 }
+
+.vili{
+    background-color: var(--bluesec);
+    margin-top: -25rem;
+    height:20rem;
+    color : var(--blueprm);
+    width:80%;
+    margin-left:auto;
+    margin-right: auto;
+}
+
+ul#CTAli li {
+    list-style-type: none;
+    padding-right: 2rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
 .vicontnew{
     margin-left: auto;

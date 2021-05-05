@@ -10,13 +10,6 @@ CourseHub is a course management platform created to help students by providing 
 
 <img src="ReadMe Assets/Landing Page.png" alt="LandingPage" width="1440"/>
 
-**Static Page Demo**
-<figure class="video_container">
-  <video controls="true" allowfullscreen="true" poster="ReadMe Assets/Landing Page.png">
-    <source src="ReadMe Assets/Document - Google Chrome 2021-05-05 12-54-32.mp4" type="video/mp4">
-  </video>
-</figure>
-
 # Getting Started
 To get started you can simply clone this `CourseHub` repository and install the dependencies.
 
@@ -28,27 +21,23 @@ git clone https://github.com/ThePrakharRajpali/CourseHub
 cd CourseHub
 ```
 
-Other than stated the tech stack, install Pillow (Python Image Library) using :
+Start off with :
 
 ```
-pip install Pillow
+npm install
 ```
 
-Before running the server, login to your active browser's gmail with the following account : 
+Before running the server, open another instance of system terminal and initiate Mongo. 
 
 ```
-testuser.cseaecom@gmail.com
-
-csea2021g3
+mongod
 ```
 
 
-Run the application with this command while in cseag3 directory :
+Run the application with this command while in CourseHub directory :
 
 ```
-cd ecom
-
-python manage.py runserver
+node app.js
 ```
 
  
@@ -57,7 +46,7 @@ python manage.py runserver
 - JavaScript
 - HTML/CSS
 - Anime.js
-- 
+- MongoDB
 
        
 

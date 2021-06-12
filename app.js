@@ -5,12 +5,7 @@ var methodOverride = require("method-override");
 
 var app =  express();
 
-var Subject  = require('./models/subject');
-var Resource = require('./models/resource')
-
 var url = "mongodb://localhost:27017/coursehub";
-
-var { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys} = require('./helper.js');
 
 var indexRoutes = require('./routes/index');
 var subjectRoutes = require('./routes/subject');
@@ -39,17 +34,12 @@ app.use(methodOverride("_method"));
 
 // deleteAllSubjects();
 
-////////////////////////////////////////////////////////////////////////////////
-// HOME SCREEN
-////////////////////////////////////////////////////////////////////////////////
-
 app.use('/', indexRoutes);
 app.use('/subject', subjectRoutes);
 app.get("/404", (req, res) => {
     res.send("<h1>404 not found</h1>")
 });
 
-////////////////////////////////////////////////////////////////////////////////
 
 app.listen(3000, process.env.IP, () => {
     console.log("Server started at Port:3000");

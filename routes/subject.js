@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys} = require('../helper');
+var { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, getSemesterString, getYearString} = require('../helper');
 
 var Subject = require('../models/subject');
 var Resource = require('../models/resource');

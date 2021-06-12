@@ -11,7 +11,7 @@
         <%= Subject.subjectCode %> <br>
     </p>
 
-    <form class="" action="/subject/<%= Subject._id %>?_method=PUT" method="post">
+    <form class="" action="/subject/<%= Subject._id %>" method="post">
         <label for="subjectName">Name of Subject: <br> </label>
         <input type="text" name="subjectName" id="subjectName" value="<%= Subject.name %>">
         <br>

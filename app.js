@@ -2,14 +2,15 @@ var bodyParser     = require("body-parser");
 var mongoose       = require("mongoose");
 var express        = require("express");
 var methodOverride = require("method-override");
-
+var path           = require('path');
 var app =  express();
 
 var url = "mongodb://localhost:27017/coursehub";
 
 var indexRoutes = require('./routes/index');
 var subjectRoutes = require('./routes/subject');
-
+var resourceRoutes = require('./routes/resources');
+// setting up mongoose connection
 mongoose.connect(url, {
     useNewUrlParser: true,
 
@@ -25,19 +26,25 @@ mongoose.connect(url, {
 });
 
 app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + '/static'))
-app.use('/static', express.static(__dirname + '/static'));
+app.use(express.static(__dirname + '/static/'))
+app.use('/static', express.static(__dirname + '/static/'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 
-
-
-
+// var storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads/');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, `${file.originalname}`)
+//     }
+// })
 // deleteAllSubjects();
 
 app.use('/', indexRoutes);
 app.use('/subject', subjectRoutes);
+app.use('/resource', resourceRoutes);
 app.get("/404", (req, res) => {
     res.send("<h1>404 not found</h1>")
 });

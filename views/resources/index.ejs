@@ -1,0 +1,12 @@
+<%- include("../partials/header") %>
+    <h1>Welcome to Coursehub</h1>
+    <ul>
+        <% Resources.forEach(resource => { %>
+            <li>
+                <a href="/resource/<%= resource._id %>">
+                    <%= resource.name %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+<%- include("../partials/footer") %>

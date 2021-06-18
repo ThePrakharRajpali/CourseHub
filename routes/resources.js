@@ -54,9 +54,17 @@ router.get('/:id', (req, res) => {
         if(err) {
             console.log(err);
         } else {
-            res.render('resources/show', {
-                Resource: resource
-            });
+            Subject.find({ subjectCode: resource.subjectCode }, (err, subjects) => {
+                if(err){
+                    console.log(err);
+                } else {
+                    res.render('resources/show', {
+                        Resource: resource,
+                        Subjects: subjects
+                    });
+                }
+            })
+            
         }
     });
 });
@@ -76,9 +84,6 @@ router.get('/:id/edit', (req, res) => {
 router.post('/:id', async (req, res) => {
     var name =  req.body.resourceName;
     var subjectCode = req.body.resourceSubjectCode;
-    //Remove
-    //Update 
-    //Add
     try{
         var resource = await Resource.findById(req.params.id);
 

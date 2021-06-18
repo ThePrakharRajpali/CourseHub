@@ -3,16 +3,13 @@
     <h1>Welcome to CourseHub</h1>
 
     <p>
-        <%= Subject.name %> <br>
-        <%= Subject.branch %> <br>
-        <%= Subject.semester %> <br>
-        <%= Subject.semesterNumber %> <br>
-        <%= Subject.subjectCode %> <br>
+        <%= Resource.name %> <br>
+        <%= Resource.subjectCode %> <br>
     </p>
 
-    <a href="/subject/<%= Subject._id %>/edit">Edit</a>
-    <br>
-    <form class="" action="/subject/<%= Subject._id %>/delete?_method=DELETE" method="post">
-        <input type="submit" name="" value="Delete">
+    <a href="/resource/<%= Resource._id%>/edit">Edit</a>
+
+    <form action="/resource/<%= Resource._id %>/delete" method="POST"> 
+        <input type="submit" value="Delete">
     </form>
 <%- include("../partials/footer") %>

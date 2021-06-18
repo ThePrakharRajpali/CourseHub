@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, getSemesterString, getYearString} = require('../helper');
+var { Branch, branchKeys, getSemesterString } = require('../helper');
 
 var Subject = require('../models/subject');
 var Resource = require('../models/resource');
@@ -28,7 +28,7 @@ router.get('/:subject', (req, res) => {
             console.log(err);
         } else {
             Resource.find({
-                    courseNumber: foundSubject.subjectCode
+                    subjectCode: foundSubject.subjectCode
                 }, (err, foundResources) => {
 
                 if(err){

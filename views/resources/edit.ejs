@@ -1,0 +1,19 @@
+<%- include("../partials/header") %>
+
+    <h1>Welcome to CourseHub</h1>
+
+    <h2>Edit Resource</h2>
+
+    <form action="/resource/<%= Resource._id %>" method="post">
+        <label for="resourceName">Name: <br></label>
+        <input type="text" name="resourceName" id="resourceName" value="<%= Resource.name %>">
+        <br>
+
+        <label for="resourceSubjectCode">Code: <br></label>
+        <input type="text" name='resourceSubjectCode' id="resourceSubjectCode" value="<%= Resource.subjectCode %>">
+        <br>
+
+        <input type="submit" value="SUBMIT">
+    </form>
+
+<%- include("../partials/footer") %>

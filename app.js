@@ -10,6 +10,9 @@ var url = "mongodb://localhost:27017/coursehub";
 var indexRoutes = require('./routes/index');
 var subjectRoutes = require('./routes/subject');
 var resourceRoutes = require('./routes/resources');
+
+var { deleteAllSubjects, deleteAllResources } = require('./helper');
+
 // setting up mongoose connection
 mongoose.connect(url, {
     useNewUrlParser: true,
@@ -28,7 +31,7 @@ mongoose.connect(url, {
 app.use(express.static(__dirname + "/public"));
 app.use(express.static(__dirname + '/static/'))
 app.use('/static', express.static(__dirname + '/static/'));
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: false}));
 app.set("view engine", "ejs");
 app.use(methodOverride("_method"));
 
@@ -41,6 +44,7 @@ app.use(methodOverride("_method"));
 //     }
 // })
 // deleteAllSubjects();
+// deleteAllResources();
 
 app.use('/', indexRoutes);
 app.use('/subject', subjectRoutes);

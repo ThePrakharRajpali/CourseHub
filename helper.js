@@ -1,4 +1,7 @@
-var Year = {
+const Subject = require('./models/subject');
+const Resource = require('./models/resource');
+
+module.exports.Year = {
     firstYear: {
         number: 1,
         name: "Freshman Year",
@@ -40,7 +43,7 @@ var Year = {
     }
 }
 
-var Semester = {
+module.exports.Semester = {
     first : {
         name: "first",
         num: 1,
@@ -75,7 +78,7 @@ var Semester = {
     },
 }
 
-var Branch = {
+module.exports.Branch = {
     freshmen: {
         name: "freshmen",
         code: 0,
@@ -133,11 +136,11 @@ var Branch = {
     },
 }
 
-var yearKeys     = Object.keys(Year);
-var branchKeys   = Object.keys(Branch);
-var semesterKeys = Object.keys(Semester);
+module.exports.yearKeys     = Object.keys(this.Year);
+module.exports.branchKeys   = Object.keys(this.Branch);
+module.exports.semesterKeys = Object.keys(this.Semester);
 
-var deleteAllSubjects = () => {
+module.exports.deleteAllSubjects = () => {
     Subject.deleteMany({}, (err) => {
         if(err) {
             console.log(err);
@@ -147,7 +150,17 @@ var deleteAllSubjects = () => {
     })
 }
 
-var getSemesterString = (semesterNumber) => {
+module.exports.deleteAllResources = () => {
+    Resource.deleteMany({}, (err) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("Resources Removed");
+        }
+    });
+}
+
+module.exports.getSemesterString = (semesterNumber) => {
     switch (semesterNumber) {
         case '1' || 1:
             return "first";
@@ -170,7 +183,7 @@ var getSemesterString = (semesterNumber) => {
     }
 }
 
-var getYearString = (yearNumber) => {
+module.exports.getYearString = (yearNumber) => {
     switch(yearNumber){
         case 1 || '1':
             return "firstYear";
@@ -185,4 +198,4 @@ var getYearString = (yearNumber) => {
     }
 }
 
-module.exports = { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, getSemesterString, getYearString};
+// module.exports = { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, deleteAllResources, getSemesterString, getYearString};

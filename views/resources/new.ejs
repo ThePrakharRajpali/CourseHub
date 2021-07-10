@@ -4,7 +4,7 @@
 
     <h2>New Resource</h2>
 
-    <form action="/resource" method="post">
+    <form action="/resource" enctype="multipart/form-data" method="post">
         <label for="resourceName">Name: <br></label>
         <input type="text" name="resourceName" id="resourceName" value="">
         <br>
@@ -12,6 +12,9 @@
         <label for="resourceSubjectCode">Code: <br></label>
         <input type="text" name='resourceSubjectCode' id="resourceSubjectCode" value="">
         <br>
+
+        <span>Upload File: </span>
+        <input type="file" name="resourceFile"> <br>
 
         <input type="submit" value="SUBMIT">
     </form>

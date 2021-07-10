@@ -8,6 +8,7 @@ var resourceSchema = new mongoose.Schema({
     // branch       : Number,
     subjectCode  : String,
     // type         : Number,
+    fileName     : String
 });
 
 module.exports = mongoose.model("Resource", resourceSchema);

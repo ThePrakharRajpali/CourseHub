@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+var fs = require("fs");
+
 var { upload } = require("../multerSetup");
 
 var { deleteAllSubjects, deleteAllResources } = require("../helper");
@@ -28,6 +30,7 @@ router.get("/new", (req, res) => {
 router.post("/", upload.single("resourceFile"), async (req, res) => {
   var name = req.body.resourceName;
   var subjectCode = req.body.resourceSubjectCode;
+  var fileName = req.file.filename;
   await Subject.find({ subjectCode: subjectCode }, async (err, subjects) => {
     if (err) {
       console.log(err);
@@ -35,6 +38,7 @@ router.post("/", upload.single("resourceFile"), async (req, res) => {
       var resource = new Resource({
         name: name,
         subjectCode: subjectCode,
+        fileName: fileName
       });
 
       await resource.save();
@@ -97,6 +101,7 @@ router.post("/:id", async (req, res) => {
 
     resource.name = name;
     resource.subjectCode = subjectCode;
+
     await resource.save();
 
     await newSubject.resources.push(resource);

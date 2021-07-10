@@ -4,7 +4,8 @@
 
     <p>
         <%= Resource.name %> <br>
-        <%= Resource.subjectCode %> <br>
+        <a href="/subject/<%= Subjects[0]._id %>"><%= Resource.subjectCode %></a>
+        <br>
     </p>
 
     <a href="/resource/<%= Resource._id%>/edit">Edit</a>

@@ -17,5 +17,14 @@
     </form>
 
     <br>
+
+    <ul>
+        <% Resources.forEach(resource => { %>
+            <li>
+                <a href="/resource/<%= resource._id %>"> <%= resource.name %> </a>
+            </li>
+        <% }) %>
+    </ul>
+
     <a href="/resource/new">Add new resource</a>
 <%- include("../partials/footer") %>

@@ -1,5 +1,7 @@
 var express = require("express");
 var router = express.Router();
+var fs = require("fs");
+
 var { upload } = require("../multerSetup");
 
 var { deleteAllSubjects, deleteAllResources } = require("../helper");
@@ -28,6 +30,7 @@ router.get("/new", (req, res) => {
 router.post("/", upload.single("resourceFile"), async (req, res) => {
   var name = req.body.resourceName;
   var subjectCode = req.body.resourceSubjectCode;
+  var fileName = req.file.filename;
   await Subject.find({ subjectCode: subjectCode }, async (err, subjects) => {
     if (err) {
       console.log(err);
@@ -35,6 +38,7 @@ router.post("/", upload.single("resourceFile"), async (req, res) => {
       var resource = new Resource({
         name: name,
         subjectCode: subjectCode,
+        fileName: fileName
       });
 
       await resource.save();
@@ -73,6 +77,7 @@ router.get("/:id/edit", (req, res) => {
     if (err) {
       console.log(err);
     } else {
+      console.log(resoure);
       res.render("resources/edit", {
         Resource: resource,
       });
@@ -86,17 +91,27 @@ router.post("/:id", async (req, res) => {
   try {
     var resource = await Resource.findById(req.params.id);
 
+    // var oldFilename = resource.fileName.split("_")[2];
+
     var oldSubject = await Subject.findOne({
       subjectCode: resource.subjectCode,
     });
+
     var idx = oldSubject.resources.indexOf(resource._id);
     oldSubject.resources.splice(idx, 1);
     oldSubject.save();
 
     var newSubject = await Subject.findOne({ subjectCode: subjectCode });
 
+    // fs.rename(`CourseHub\\static\\pdf\\${resource.fileName}`, `..\\static\\pdf\\${subjectCode}_${name}_${oldFilename}`, (err) => {
+    //   if(err) console.log(err);
+    //   else console.log('File Renamed');
+    // });
+
     resource.name = name;
     resource.subjectCode = subjectCode;
+
+
     await resource.save();
 
     await newSubject.resources.push(resource);
@@ -109,7 +124,20 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id/delete", (req, res) => {
+router.post("/:id/delete", async (req, res) => {
+  Resource.findById(req.params.id, (err, resource) => {
+    if(err) {
+      console.log(err);
+    } else {
+      fs.unlink(`..\\static\\pdf\\${resource.fileName}`, (err) => {
+        if(err) {
+          console.log(err);
+        } else {
+          console.log('File Deleted');
+        }
+      })
+    }
+  })
   Resource.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       console.log(err);

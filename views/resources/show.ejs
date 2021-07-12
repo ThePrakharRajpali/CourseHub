@@ -6,6 +6,8 @@
         <%= Resource.name %> <br>
         <a href="/subject/<%= Subjects[0]._id %>"><%= Resource.subjectCode %></a>
         <br>
+
+        <a href="/static/pdf/<%= Resource.fileName %>">Link to Resource</a>
     </p>
 
     <a href="/resource/<%= Resource._id%>/edit">Edit</a>
@@ -13,4 +15,55 @@
     <form action="/resource/<%= Resource._id %>/delete" method="POST"> 
         <input type="submit" value="Delete">
     </form>
+
+    <div class="pdf-viewer">
+    </div>
+
+    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script>
+        var url = '/static/pdf/<%= Resource.fileName %>'
+        var pdfDoc = null;
+
+        var scale = 1;
+
+        const renderPage = (num) => {
+            pdfDoc.getPage(num).then((page) => {
+                var canvasId = `pdf-viewer-${num}`;
+                $('.pdf-viewer').append($('<canvas/>', {
+                    id: canvasId,
+                }));
+
+                var canvas = document.getElementById(canvasId);
+                var context = canvas.getContext('2d');
+
+                var viewport = page.getViewport({scale});
+                canvas.height = viewport.height;
+                canvas.width = viewport.width;
+
+                var renderContext = {
+                    canvasContext: context,
+                    viewport,
+                };
+
+                page.render(renderContext);
+            });
+        };
+
+        const renderAllPages = () => {
+            for(var i=1; i <= pdfDoc.numPages; i++) renderPage(i);
+        };
+
+        pdfjsLib.getDocument(url).promise.then((pdfDoc_) => {
+            pdfDoc = pdfDoc_;
+
+            renderAllPages();
+        }).catch(err => {
+            const div = document.createElement('div');
+            div.className = 'error';
+            div.appendChild('body').insertBefore(div, document.querySelector('.pdf-viewer'));
+        });
+    </script>
+
 <%- include("../partials/footer") %>

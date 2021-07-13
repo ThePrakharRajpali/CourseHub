@@ -1,5 +1,6 @@
 const Subject = require('./models/subject');
 const Resource = require('./models/resource');
+const User = require('./models/user');
 
 module.exports.Year = {
     firstYear: {
@@ -198,5 +199,22 @@ module.exports.getYearString = (yearNumber) => {
     }
 }
 
+module.exports.deleteAllUsers = () => {
+    User.deleteMany({}, (err) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("All users deleted");
+        }
+    })
+}
 
+module.exports.makeAdmins = () => {
+    User.find({}).then(users => {
+        users.forEach(user => {
+            user.isAdmin = true;
+            user.save();
+        })
+    }).catch(err => console.log(err));
+}
 // module.exports = { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, deleteAllResources, getSemesterString, getYearString};

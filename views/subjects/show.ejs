@@ -1,30 +1,32 @@
 <%- include("../partials/header") %>
 
-    <h1>Welcome to CourseHub</h1>
+        <h1>Welcome to CourseHub</h1>
 
-    <p>
-        <%= Subject.name %> <br>
-        <%= Subject.branch %> <br>
-        <%= Subject.semester %> <br>
-        <%= Subject.semesterNumber %> <br>
-        <%= Subject.subjectCode %> <br>
-    </p>
+        <p>
+            <%= Subject.name %> <br>
+            <%= Subject.branch %> <br>
+            <%= Subject.semester %> <br>
+            <%= Subject.semesterNumber %> <br>
+            <%= Subject.subjectCode %> <br>
+        </p>
 
-    <a href="/subject/<%= Subject._id %>/edit">Edit</a>
-    <br>
-    <form class="" action="/subject/<%= Subject._id %>/delete" method="post">
-        <input type="submit" name="" value="Delete">
-    </form>
+        <a href="/subject/<%= Subject._id %>/edit">Edit</a>
+        <br>
+        <form class="" action="/subject/<%= Subject._id %>/delete" method="post">
+            <input type="submit" name="" value="Delete">
+        </form>
 
-    <br>
+        <br>
 
-    <ul>
-        <% Resources.forEach(resource => { %>
-            <li>
-                <a href="/resource/<%= resource._id %>"> <%= resource.name %> </a>
-            </li>
-        <% }) %>
-    </ul>
+        <ul>
+            <% Resources.forEach(resource=> { %>
+                <li>
+                    <a href="/resource/<%= resource._id %>">
+                        <%= resource.name %>
+                    </a>
+                </li>
+            <% }) %>
+        </ul>
 
-    <a href="/resource/new">Add new resource</a>
+        <a href="/resource/new">Add new resource</a>
 <%- include("../partials/footer") %>

@@ -1,0 +1,49 @@
+<%- include("../partials/header") %>
+
+
+    <form action="/users/register" method="POST">
+        <label for="emill">Email: </label>
+        <input type="email" name="email" id="email" placeholder="Enter Email">
+
+        <br>
+
+        <label for="password">Password: </label>
+        <input type="password" name="password" id="password" placeholder="Enter Password">
+
+        <br>
+
+        <label for="password2">Confirm Password: </label>
+        <input type="password" name="password2" id="password2" placeholder="Confirm Password">
+
+        <br>
+
+        <label for="username">UserName: </label>
+        <input type="text" name="username" id="username" placeholder="Enter Username">
+
+        <br>
+
+        <label for="branch">Branch: <br> </label>
+        <select class="" id="branch" name="branch">
+            <option value="CSE">CSE</option>
+            <option value="MNC">MNC</option>
+            <option value="ECE">ECE</option>
+            <option value="EEE">EEE</option>
+            <option value="Mech">Mech</option>
+            <option value="Chem">Chem</option>
+            <option value="Civil">Civil</option>
+            <option value="CST">CST</option>
+            <option value="EPH">EPH</option>
+            <option value="BSBE">BSBE</option>
+        </select>
+
+        <br>
+        
+        <label for="joinyear">Year of Joining: </label>
+        <input type="number" name="joinyear" id="joinyear" max="2030" min="2010">
+
+        <br>
+
+        <button type="submit">Register</button>
+    </form>
+
+<%- include("../partials/footer") %>

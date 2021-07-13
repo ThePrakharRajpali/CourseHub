@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var { ensureAuthenticated, isAdmin } = require('../config/auth');
 var { Branch, branchKeys, getSemesterString } = require('../helper');
 
 var Subject = require('../models/subject');
@@ -18,7 +19,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/new', (req, res) => {
+router.get('/new', ensureAuthenticated, isAdmin , (req, res) => {
     res.render("subjects/new");
 })
 
@@ -44,7 +45,7 @@ router.get('/:subject', (req, res) => {
     });
 });
 
-router.post("/new", (req, res) => {
+router.post("/new", ensureAuthenticated, isAdmin, (req, res) => {
     var name           = req.body.subjectName;
     var branch         = req.body.subjectBranch;
     var semesterNumber = req.body.subjectSemesterNumber;
@@ -69,7 +70,7 @@ router.post("/new", (req, res) => {
     });
 });
 
-router.get("/:subject/edit", (req, res) => {
+router.get("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
     Subject.findById(req.params.subject, (err, foundSubject) => {
         if(err){
             console.log(err);
@@ -83,7 +84,7 @@ router.get("/:subject/edit", (req, res) => {
     });
 });
 
-router.post("/:subject/edit", (req, res) => {
+router.post("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
     var name           = req.body.subjectName;
     var branch         = req.body.subjectBranch;
     var semesterNumber = req.body.subjectSemesterNumber;
@@ -98,7 +99,7 @@ router.post("/:subject/edit", (req, res) => {
         subjectCode    : subjectCode
     };
 
-    Subject.findByIdAndUpdate(req.params.subject, editedSubject, (err, updatedSubject) => {
+    Subject.findByIdAndUpdate(req.params.subject, editedSubject, isAdmin, (err, updatedSubject) => {
         if(err) {
             console.log(err);
         } else {
@@ -108,7 +109,7 @@ router.post("/:subject/edit", (req, res) => {
     });
 })
 
-router.post("/:subject/delete", (req, res) => {
+router.post("/:subject/delete", ensureAuthenticated, isAdmin, (req, res) => {
     Subject.remove({_id: req.params.subject}, (err) => {
         if(err){
             console.log(err);
@@ -122,11 +123,3 @@ router.post("/:subject/delete", (req, res) => {
 
 module.exports = router;
 
-// index       x 
-// show        x
-// new get     x     
-// new post    x    
-// edit get    x       
-// edit post   x       
-// delete get       
-// delete post 

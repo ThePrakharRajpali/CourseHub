@@ -24,13 +24,17 @@ const userSchema = new mongoose.Schema({
     type: Date,
     required: true
   },
-  avatar: {
-    type: String
-  },
+  // avatar: {
+  //   type: String
+  // },
   date: {
     type: Date,
     default: Date.now
-  }//just the current date
+  },//just the current date
+  isAdmin: {
+    type: Boolean,
+    default: false,
+  }
 });
 
-module.exports = mongoose.model('user', UserSchema);
+module.exports = mongoose.model('user', userSchema);

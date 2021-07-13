@@ -9,7 +9,7 @@ var { deleteAllSubjects, deleteAllResources } = require("../helper");
 var Subject = require("../models/subject");
 var Resource = require("../models/resource");
 
-router.use(express.urlencoded({ extended: false }));
+router.use(express.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
   Resource.find({}, (err, foundResources) => {

@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
     })
 })
 
-router.get('/new', ensureAuthenticated, isAdmin , (req, res) => {
+router.get('/new', ensureAuthenticated , (req, res) => {
     res.render("subjects/new");
 })
 
@@ -45,7 +45,7 @@ router.get('/:subject', (req, res) => {
     });
 });
 
-router.post("/new", ensureAuthenticated, isAdmin, (req, res) => {
+router.post("/new", ensureAuthenticated, (req, res) => {
     var name           = req.body.subjectName;
     var branch         = req.body.subjectBranch;
     var semesterNumber = req.body.subjectSemesterNumber;
@@ -70,7 +70,7 @@ router.post("/new", ensureAuthenticated, isAdmin, (req, res) => {
     });
 });
 
-router.get("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
+router.get("/:subject/edit", ensureAuthenticated, (req, res) => {
     Subject.findById(req.params.subject, (err, foundSubject) => {
         if(err){
             console.log(err);
@@ -84,7 +84,7 @@ router.get("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
     });
 });
 
-router.post("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
+router.post("/:subject/edit", ensureAuthenticated, (req, res) => {
     var name           = req.body.subjectName;
     var branch         = req.body.subjectBranch;
     var semesterNumber = req.body.subjectSemesterNumber;
@@ -99,7 +99,7 @@ router.post("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
         subjectCode    : subjectCode
     };
 
-    Subject.findByIdAndUpdate(req.params.subject, editedSubject, isAdmin, (err, updatedSubject) => {
+    Subject.findByIdAndUpdate(req.params.subject, editedSubject,  (err, updatedSubject) => {
         if(err) {
             console.log(err);
         } else {
@@ -109,7 +109,7 @@ router.post("/:subject/edit", ensureAuthenticated, isAdmin, (req, res) => {
     });
 })
 
-router.post("/:subject/delete", ensureAuthenticated, isAdmin, (req, res) => {
+router.post("/:subject/delete", ensureAuthenticated,  (req, res) => {
     Subject.remove({_id: req.params.subject}, (err) => {
         if(err){
             console.log(err);

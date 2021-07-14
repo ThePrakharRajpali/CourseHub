@@ -217,4 +217,18 @@ module.exports.makeAdmins = () => {
         })
     }).catch(err => console.log(err));
 }
+
+module.exports.makeSuperAdmins = () => {
+    User.find({}, (err, users) => {
+        if(err) {
+            console.log(err);
+        } else {
+            users.forEach(user => {
+                user.isAdmin = true;
+                user.isSuperAdmin = true;
+                user.save();
+            });
+        }
+    });
+}
 // module.exports = { Year, Branch, Semester, yearKeys, branchKeys, semesterKeys, deleteAllSubjects, deleteAllResources, getSemesterString, getYearString};

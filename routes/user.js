@@ -110,7 +110,11 @@ router.post("/register", forwardAuthenticated, (req, res) => {
                   "success_msg",
                   "You are now registered and can log in"
                 );
-                res.redirect("/users/login");
+                passport.authenticate("local", {
+                  successRedirect: "/users/show",
+                  failureRedirect: "/users/login",
+                  failureFlash: true,
+                })(req, res, next);
               })
               .catch((err) => console.log(err));
           });

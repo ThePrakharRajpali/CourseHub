@@ -16,7 +16,7 @@ module.exports = {
     },
 
     isAdmin: (req, res, next) => {
-        if(req.isAuthenticated() && req.user.isAdmin) {
+        if(req.isAuthenticated() && (req.user.isAdmin || req.user.isSuperAdmin) ) {
             return next();
         }
 

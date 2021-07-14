@@ -9,6 +9,14 @@ var { deleteAllSubjects, deleteAllResources } = require("../helper");
 var Subject = require("../models/subject");
 var Resource = require("../models/resource");
 
+// Required for authentication
+var {
+  ensureAuthenticated,
+  forwardAuthenticated,
+  isAdmin,
+  isSuperAdmin,
+} = require("../config/auth");
+
 router.use(express.urlencoded({ extended: true }));
 
 router.get("/", (req, res) => {
@@ -23,11 +31,11 @@ router.get("/", (req, res) => {
   });
 });
 
-router.get("/new", (req, res) => {
+router.get("/new", isAdmin, (req, res) => {
   res.render("resources/new");
 });
 
-router.post("/", upload.single("resourceFile"), async (req, res) => {
+router.post("/", isAdmin, upload.single("resourceFile"), async (req, res) => {
   var name = req.body.resourceName;
   var subjectCode = req.body.resourceSubjectCode;
   var fileName = req.file.filename;
@@ -38,7 +46,7 @@ router.post("/", upload.single("resourceFile"), async (req, res) => {
       var resource = new Resource({
         name: name,
         subjectCode: subjectCode,
-        fileName: fileName
+        fileName: fileName,
       });
 
       await resource.save();
@@ -72,7 +80,7 @@ router.get("/:id", (req, res) => {
   });
 });
 
-router.get("/:id/edit", (req, res) => {
+router.get("/:id/edit", isAdmin, (req, res) => {
   Resource.findById(req.params.id, (err, resource) => {
     if (err) {
       console.log(err);
@@ -85,7 +93,7 @@ router.get("/:id/edit", (req, res) => {
   });
 });
 
-router.post("/:id", async (req, res) => {
+router.post("/:id", isAdmin, async (req, res) => {
   var name = req.body.resourceName;
   var subjectCode = req.body.resourceSubjectCode;
   try {
@@ -111,7 +119,6 @@ router.post("/:id", async (req, res) => {
     resource.name = name;
     resource.subjectCode = subjectCode;
 
-
     await resource.save();
 
     await newSubject.resources.push(resource);
@@ -124,20 +131,20 @@ router.post("/:id", async (req, res) => {
   }
 });
 
-router.post("/:id/delete", async (req, res) => {
+router.post("/:id/delete", isAdmin, async (req, res) => {
   Resource.findById(req.params.id, (err, resource) => {
-    if(err) {
+    if (err) {
       console.log(err);
     } else {
       fs.unlink(`..\\static\\pdf\\${resource.fileName}`, (err) => {
-        if(err) {
+        if (err) {
           console.log(err);
         } else {
-          console.log('File Deleted');
+          console.log("File Deleted");
         }
-      })
+      });
     }
-  })
+  });
   Resource.findByIdAndRemove(req.params.id, (err) => {
     if (err) {
       console.log(err);

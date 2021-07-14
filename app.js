@@ -18,7 +18,7 @@ var subjectRoutes = require("./routes/subject");
 var resourceRoutes = require("./routes/resources");
 var userRoutes = require('./routes/user');
 
-var { deleteAllSubjects, deleteAllResources, makeAdmins } = require("./helper");
+var { deleteAllSubjects, deleteAllResources, makeAdmins, deleteAllUsers } = require("./helper");
 
 // setting up mongoose connection
 mongoose
@@ -78,6 +78,7 @@ app.use(methodOverride("_method"));
 
 // deleteAllSubjects();
 // deleteAllResources();
+// deleteAllUsers();
 // makeAdmins();
 
 app.use("/", indexRoutes);

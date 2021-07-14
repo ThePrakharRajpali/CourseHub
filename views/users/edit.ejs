@@ -1,10 +1,14 @@
 <%- include("../partials/header") %>
 
 
-<form action="/users/<%= user._id %>/edit" method="POST">
-        
+    <form action="/users/<%= user._id %>/edit" method="POST">
+        <label for="email">Email: </label>
+        <input type="email" name="email" id="email" placeholder="Enter Email" value="<%= user.email %>">
+
+        <br>
+
         <label for="username">UserName: </label>
-        <input type="text" name="username" id="username" placeholder="Enter Username">
+        <input type="text" name="username" id="username" placeholder="Enter Username" value="<%= user.username %>">
 
         <br>
 
@@ -24,12 +28,12 @@
 
         <br>
         
-        <!-- <label for="joinyear">Year of Joining: </label>
-        <input type="number" name="joinyear" id="joinyear" max="2030" min="2010">
+        <label for="joinyear">Year of Joining: </label>
+        <input type="number" name="joinyear" id="joinyear" max="2030" min="2010" value="<%= user.joinyear %>">
 
-        <br> -->
+        <br>
 
-        <button type="submit">Update</button>
+        <button type="submit">Register</button>
     </form>
 
 <%- include("../partials/footer") %>

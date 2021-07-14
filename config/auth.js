@@ -22,5 +22,13 @@ module.exports = {
 
         req.flash('error_msg', 'No permission to view that resource');
         res.redirect('/')
+    },
+
+    isSuperAdmin: (req, res, next) => {
+        if(req.isAuthenticated() && req.user.isSuperAdmin) {
+            return next();
+        }
+        req.flash('error_msg', 'No permission to view that resource');
+        res.redirect('/')
     }
 }

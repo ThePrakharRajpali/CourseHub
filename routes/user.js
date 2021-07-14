@@ -5,7 +5,7 @@ var passport = require('passport');
 var router = express.Router();
 
 var Users = require('../models/user');
-var { forwardAuthenticated, isAdmin } = require('../config/auth');
+var { ensureAuthenticated, forwardAuthenticated, isAdmin } = require('../config/auth');
 
 router.use(express.urlencoded({ extended:true }));
 
@@ -13,13 +13,34 @@ router.get('/login', (req, res) => {
     res.render('users/login');
 });
 
+router.get('/', (req, res) => {
+    Users.find({}, (err, allusers) => {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(allusers);
+            res.render('users/index', {
+                allusers,
+            });
+        }
+    });
+});
+
+router.get('/show', ensureAuthenticated, (req, res) => {
+    console.log(req.user);
+    res.render('users/show', {
+        user: req.user
+    });
+});
+
+
 router.get('/register', (req, res) => {
     res.render('users/register');
 });
 
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/',
+        successRedirect: '/users/show',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
@@ -89,6 +110,47 @@ router.post('/register', (req, res) => {
     }
 });
 
+router.get('/:id/edit', (req, res) => {
+    Users.findById(req.params._id, (err, user) => {
+        if (err) {
+            console.log(err);
+        }
+        else {
+            res.render('users/edit',{user:user});
+        }
+    })
+
+})
+
+router.post('/:id/edit', (req,res)=>{
+    var name= req.user.username;
+    var branch1=req.user.branch;
+    Users.findByIdAndUpdate(req.params._id, {username:name,branch:branch1}, (err, user) => {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log(user);
+            res.send("you details are updated");
+        }
+    })
+});
+
+router.post('/:id/delete', async(req,res)=>{
+    try{
+         let dblog=  await Users.findById(req.params.id).lean();
+     if(!dblog){
+         return res.render('error/404')
+     }
+     else{
+         await Users.remove({_id: req.params.id})
+         res.redirect('/users/')
+         console.log("user deleted")
+      }
+   }catch(err){
+    console.log(err);
+    res.send('error')
+ }
+});
 router.get('/logout', (req, res) => {
     req.logout()
 
@@ -96,5 +158,7 @@ router.get('/logout', (req, res) => {
 
     res.redirect('/users/login');
 });
+
+
 
 module.exports = router;

@@ -10,14 +10,14 @@ module.exports = {
 
     forwardAuthenticated: (req, res, next) => {
         if(!req.isAuthenticated()) {
-            return next;
+            return next();
         } 
         res.redirect('/');
     },
 
     isAdmin: (req, res, next) => {
         if(req.isAuthenticated() && req.user.isAdmin) {
-            return next;
+            return next();
         }
 
         req.flash('error_msg', 'No permission to view that resource');

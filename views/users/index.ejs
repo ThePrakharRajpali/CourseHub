@@ -1,0 +1,8 @@
+<%- include("../partials/header") %>
+   
+        <h1>humara user page hai bc</h1>
+
+        <% allusers.forEach(user => { %>
+            <a href="/users/<%= user._id %>"><%= user.username %></a>
+        <% }) %>
+<%- include("../partials/footer") %>

@@ -6,9 +6,9 @@ var path = require("path");
 var morgan = require("morgan");
 var cors = require("cors");
 var multer = require("multer");
-var passport = require('passport');
-var flash = require('connect-flash');
-var session = require('express-session');
+var passport = require("passport");
+var flash = require("connect-flash");
+var session = require("express-session");
 
 var app = express();
 var url = "mongodb://localhost:27017/coursehub";
@@ -16,9 +16,14 @@ var url = "mongodb://localhost:27017/coursehub";
 var indexRoutes = require("./routes/index");
 var subjectRoutes = require("./routes/subject");
 var resourceRoutes = require("./routes/resources");
-var userRoutes = require('./routes/user');
+var userRoutes = require("./routes/user");
 
-var { deleteAllSubjects, deleteAllResources, makeAdmins, deleteAllUsers } = require("./helper");
+var {
+  deleteAllSubjects,
+  deleteAllResources,
+  makeAdmins,
+  deleteAllUsers,
+} = require("./helper");
 
 // setting up mongoose connection
 mongoose
@@ -44,15 +49,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 
 // Passport config
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 app.use(
   session({
-    secret: 'something',
+    secret: "something",
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
   })
-)
+);
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -62,9 +67,9 @@ app.use(flash());
 
 //Global variable used in flash
 app.use((req, res, next) => {
-  res.locals.success_msg = req.flash('success_msg');
-  res.locals.error_msg = req.flash('error_msg');
-  res.locals.error = req.flash('error');
+  res.locals.success_msg = req.flash("success_msg");
+  res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
   next();
 });
 

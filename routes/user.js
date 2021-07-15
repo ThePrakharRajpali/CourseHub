@@ -50,7 +50,7 @@ router.post("/login", forwardAuthenticated, (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/register", forwardAuthenticated, (req, res) => {
+router.post("/register", forwardAuthenticated, (req, res,next) => {
   var { username, email, password, password2, branch, joinyear } = req.body;
 
   var errors = [];
@@ -68,7 +68,7 @@ router.post("/register", forwardAuthenticated, (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render("register", {
+    res.render("users/register", {
       errors,
       username,
       email,
@@ -81,7 +81,7 @@ router.post("/register", forwardAuthenticated, (req, res) => {
     //Create a new user
     Users.findOne({ email: email }).then((user) => {
       if (user) {
-        res.render("register", {
+        res.render("users/register", {
           errors,
           username,
           email,

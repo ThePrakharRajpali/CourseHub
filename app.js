@@ -22,6 +22,7 @@ var {
   deleteAllSubjects,
   deleteAllResources,
   makeAdmins,
+  makeSuperAdmins,
   deleteAllUsers,
 } = require("./helper");
 
@@ -84,7 +85,8 @@ app.use(methodOverride("_method"));
 // deleteAllSubjects();
 // deleteAllResources();
 // deleteAllUsers();
-// makeAdmins();
+//makeAdmins();
+//makeSuperAdmins();
 
 app.use("/", indexRoutes);
 app.use("/subject", subjectRoutes);

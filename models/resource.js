@@ -9,6 +9,9 @@ var resourceSchema = new mongoose.Schema({
   subjectCode: String,
   // type         : Number,
   fileName: String,
+  user:{ type: mongoose.Schema.Types.ObjectId,
+  ref: 'user',
+  },
 });
 
 module.exports = mongoose.model("Resource", resourceSchema);

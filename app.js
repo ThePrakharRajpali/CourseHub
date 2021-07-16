@@ -80,6 +80,10 @@ app.use(express.static(__dirname + "/static/"));
 app.use("/static", express.static(__dirname + "/static/"));
 
 app.set("view engine", "ejs");
+app.use(express.static('public'))
+app.use('/css',express.static(__dirname +'public/css'))
+app.use('/css',express.static(__dirname +'public/js'))
+app.use('/css',express.static(__dirname +'public/images'))
 app.use(methodOverride("_method"));
 
 // deleteAllSubjects();
